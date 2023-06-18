@@ -1,0 +1,45 @@
+§ RAJOUTER DES HISTOIRES §
+
+Votre Conteuse a un format ouvert : elle est donc librement personnalisable. Ouvrez les dossiers correspondant aux faces et faites glisser dedans les MP3 de vos souhaits (passez-les d'abord à la Moulinette Joyeuse dans le Club), supprimez-en, déplacez, copiez et collez comme vous l'entendez, dans la limite de la mémoire disponible.
+
+Prêt(e) ? Rdv au Club Joyeuse : http://club.joyeuse.io
+
+1. LA LIBRAIRIE
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+Vous y trouverez plusieurs centaines d'histoires, chansons et berceuses à télécharger, issues des catalogues des plus grands éditeurs jeunesse (Didier Jeunesse, Victorie Music, Oxford University Press, ...). 
+
+Vous pouvez les acheter à l'unité ou bien par bouquet de 3, 5 ou même 10 morceaux : une fois téléchargés, vous les retrouverez dans le dossier "Téléchargement" de votre ordinateur. 
+
+Reliez votre Conteuse à votre ordinateur grâce au câble USB fourni. N'utilisez que celui-là (rouge ou alors bleu avec une étiquette Joyeuse), il est taillé pour l'aventure :) 
+
+Faites glisser les fichiers MP3 dans le dossier-face de votre choix (ex : face nuage). Le tour est joué !
+
+Nb : Les bouquets doivent être dézippés avant d'être copiés dans la Conteuse. Ne renommez pas les dossiers-faces, la Conteuse ne s'y retrouverait plus.
+
+2. LE STUDIO D'ENREGISTREMENT 
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+Cette fonction est une des préférées des parents Joyeuse... Nous y avons même rajouté le moyen d'inviter grands-parents et amis à enregistrer eux-mêmes leur histoire...
+
+Enregistrez-vous puis retrouvez votre histoire dans le dossier "Téléchargement" de votre ordinateur. 
+
+Reliez votre Conteuse à votre ordinateur grâce au câble USB fourni. N'utilisez que celui-là (rouge ou alors bleu avec une étiquette Joyeuse), il est taillé pour l'aventure :) 
+
+Faites glisser votre histoire dans le dossier-face de votre choix (ex : face nuage). Le tour est joué !
+
+3. LA MOULINETTE
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+La moulinette vous permet de convertir n'importe quel fichier audio provenant de votre discothèque personnelle (CD, MP3...) au format MP3 Joyeuse... puis de l'importer librement dans votre Conteuse.
+
+Le format Joyeuse : mono, 64 kbs, 16 khz, constant bitrate. Les titres ne doivent pas dépasser 35 caractères. A défaut ils ne seront pas joués.
+
+4. A SAVOIR
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+Combien d'histoires peut-on mettre par face ? C'est à votre libre appréciation, mais notre recommandation est de ne pas dépasser 15 pour garantir la meilleure expérience d'écoute à votre enfant. Au-delà il perdra ses repères.
+
+Peut-on mettre des MP3 dans la face ORANGE / COEUR ? La face COEUR est la face des histoires préférées. Par défaut, elle est gérée par l'algorithme de la Conteuse qui y enregistre automatiquement les histoires les plus écoutées par votre enfant. Mais nous avons rajouté la possibilité de débrayer cette fonction pour vous permettre d'y rajouter vous-mêmes vos propres MP3 préférés. Dans ce cas : il vous faut activer la fonction ad hoc dans le fichier SETTINGS (dans le dossier Secrets de votre Conteuse).
+
+
+Voilà, vous savez tout. Retrouvons-nous au Club, on est plus Joyeuse ensemble !
+
+La Joyeuse compagnie
+club@joyeuse.io

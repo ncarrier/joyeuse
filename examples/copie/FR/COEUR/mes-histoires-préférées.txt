@@ -1,0 +1,23 @@
+§ MES HISTOIRES PREFEREES §
+
+On le sait tous, nos petits chéris ont leurs marottes et c'est important qu'ils puissent retrouver rapidement leurs histoires préférées... D'où cette face COEUR, où elles sont rassemblées :-)
+
+Deux modes de gestion aux choix (l'un ou l'autre, pas les deux à la fois).
+
+Mode automatique
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+C'est le mode par défaut. La Conteuse enregistre automatiquement dans la face coeurs les 5 histoires le plus souvent écoutées jusqu'au bout ! L'algorithme démarre de zéro et bloque le compteur à 5 pour que l'enfant s'y retrouve rapidement. Le palmarès évolue ensuite avec les préférences de l'enfant... 
+
+Nb : les histoires ne s'affichent pas dans le dossier car l'algorithme garde tout en mémoire :)
+
+Mode manuel
+¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨
+Mais vous, parents, pouvez aussi choisir des gérer à la main les favoris ! Il suffit de glisser dans la face COEUR des MP3 provenant d'autres faces ou d'en importer de votre propre bibliothèque (passés préalablement à la moulinette dans le Club).
+
+A savoir : pour activer le mode manuel il faut éditer le fichier settings.txt (voir dans le dossier "secrets" de la Conteuse) et passer le paramètre customFavorites:Y. 
+
+
+Tuturututurututuuuuuuuuuuu !
+
+La Joyeuse compagnie
+club@joyeuse.io
