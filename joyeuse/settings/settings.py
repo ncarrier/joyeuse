@@ -3,6 +3,7 @@ Created on 18 juin 2023
 
 @author: nicolas
 '''
+import sys
 import re
 from joyeuse.settings.section import Section
 from joyeuse.settings.sub_section import SubSection
@@ -106,3 +107,12 @@ class Settings(object):
         result += "".join([str(s) for s in self.__sections])
 
         return result
+
+
+if __name__ == '__main__':
+    # doesn't work, why?
+    settings = Settings(sys.argv[1])
+
+    settings.save()
+
+    print(settings)
