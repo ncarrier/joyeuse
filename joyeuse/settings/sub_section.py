@@ -3,12 +3,14 @@ Created on 18 juin 2023
 
 @author: nicolas
 '''
+import re
 
 
 class SubSection(object):
     '''
     classdocs
     '''
+    SUB_SECTION_TITLE = u"^[0-9]\\.[0-9] (.*)$"
 
     def __init__(self, name):
         '''
@@ -31,3 +33,13 @@ class SubSection(object):
         result += "".join([str(p) for p in self.__parameters])
 
         return result
+
+    @property
+    def name(self):
+        m = re.match(SubSection.SUB_SECTION_TITLE, self.__name, re.UNICODE)
+
+        return m.group(1).capitalize()
+
+    @property
+    def parameters(self):
+        return self.__parameters

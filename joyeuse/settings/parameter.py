@@ -27,3 +27,11 @@ class Parameter(object):
         result += "".join([c + "\r\n" for c in self.__comments])
 
         return result
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def value(self):
+        return self.__value

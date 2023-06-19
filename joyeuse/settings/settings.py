@@ -14,7 +14,7 @@ class Settings(object):
     '''
     classdocs
     '''
-    SECTION_TITLE = u"^[0-9]\\. .*$"
+    SECTION_TITLE = u"^[0-9]\\. (.*)$"
     SEPARATION = u'^¨+$'
     SUB_SECTION_TITLE = u"^[0-9]\\.[0-9] .*$"
     PARAMETER = u"^([a-zA-Z]*):([0-9a-zA-Z]+) +<+$"
@@ -96,6 +96,10 @@ class Settings(object):
                     continue
 
                 section.add_comment(line)
+
+    @property
+    def sections(self):
+        return self.__sections
 
     def save(self):
         with open(self.__path + "~", "w") as f:
