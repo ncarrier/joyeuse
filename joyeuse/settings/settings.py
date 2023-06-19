@@ -4,9 +4,9 @@ Created on 18 juin 2023
 @author: nicolas
 '''
 import re
-from joyeuse.section import Section
-from joyeuse.sub_section import SubSection
-from joyeuse.parameter import Parameter
+from joyeuse.settings.section import Section
+from joyeuse.settings.sub_section import SubSection
+from joyeuse.settings.parameter import Parameter
 
 
 class Settings(object):
