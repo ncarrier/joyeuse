@@ -24,8 +24,7 @@ class MainWindow(object):
 
     def __setup_window(self):
         self.__root.title("Joyeuse")
-        self.__root.geometry("500x700")
-        self.__root.minsize(600, 700)
+        self.__root.resizable(False, False)
 
     def __setup_notebook(self):
         self.__notebook = notebook = ttk.Notebook(self.__root)
@@ -64,11 +63,13 @@ class MainWindow(object):
         sub_frame = ttk.LabelFrame(frame, text=sub_section.name)
         sub_frame.grid(row=index, column=0, sticky=tkinter.EW,
                        padx=(6, 6), pady=(6, 6))
+        if len(sub_section.comments) > 0:
+            Hovertip(sub_frame, sub_section.comments)
 
         # load the parameters
         p_index = 0
         for p in sub_section.parameters:
-            label = ttk.Label(sub_frame, text=f"{p.name} = {p.value}")
+            label = ttk.Label(sub_frame, text=p.name)
             label.grid(
                 column=0,
                 row=p_index,
@@ -76,6 +77,13 @@ class MainWindow(object):
                 padx=(3, 3),
                 pady=(3, 3)
             )
+            entry = ttk.Entry(sub_frame,
+                              textvariable=p.var)
+            entry.grid(column=1, row=p_index, sticky=tkinter.EW, pady=3,
+                       padx=3)
+            if len(p.comments) > 0:
+                Hovertip(label, p.comments)
+                Hovertip(entry, p.comments)
             p_index += 1
 
     def __load_cube_section(self, section, index):
@@ -99,7 +107,7 @@ class MainWindow(object):
         # load the parameters
         p_index = ss_index
         for p in section.parameters:
-            label = ttk.Label(frame, text=f"{p.name} = {p.value}")
+            label = ttk.Label(frame, text=p.name)
             label.grid(
                 column=0,
                 row=p_index,
@@ -107,6 +115,13 @@ class MainWindow(object):
                 padx=(3, 3),
                 pady=(3, 3)
             )
+            entry = ttk.Entry(frame,
+                              textvariable=p.var)
+            entry.grid(column=1, row=p_index, sticky=tkinter.EW, pady=3,
+                       padx=3)
+            if len(p.comments) > 0:
+                Hovertip(label, p.comments)
+                Hovertip(entry, p.comments)
             p_index += 1
 
     def __load_cube_settings(self, settings):

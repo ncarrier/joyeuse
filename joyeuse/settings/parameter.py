@@ -3,6 +3,7 @@ Created on 18 juin 2023
 
 @author: nicolas
 '''
+from tkinter import StringVar
 
 
 class Parameter(object):
@@ -17,6 +18,7 @@ class Parameter(object):
         self.__name = name
         self.__value = value
         self.__comments = []
+        self.__var = StringVar(value=value)
 
     def add_comment(self, comment):
         self.__comments.append(comment)
@@ -35,3 +37,11 @@ class Parameter(object):
     @property
     def value(self):
         return self.__value
+
+    @property
+    def comments(self):
+        return "\n".join([l for l in self.__comments if len(l) > 0])
+
+    @property
+    def var(self):
+        return self.__var
