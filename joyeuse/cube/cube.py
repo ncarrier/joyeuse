@@ -11,7 +11,6 @@ class Cube(object):
     classdocs
     '''
 
-
     def __init__(self, path):
         '''
         Constructor

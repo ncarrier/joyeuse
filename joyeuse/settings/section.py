@@ -52,3 +52,7 @@ class Section(object):
     @property
     def parameters(self):
         return self.__parameters
+
+    @property
+    def comments(self):
+        return "\n".join([l for l in self.__comments if len(l) > 0])
