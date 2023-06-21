@@ -1,0 +1,4 @@
+diff-ignore
+tar-ignore=examples
+tar-ignore=snippets
+tar-ignore

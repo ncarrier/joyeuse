@@ -25,6 +25,14 @@ make pip
 
 Le package généré se trouve dans **dist/**.
 
+## Générer un package debian
+
+```sh
+make debian
+```
+
+Le package généré se trouve dans le répertoire parent.
+
 ## Compatibilité
 
 Pour l'instant, le logiciel n'a été testé que sous Linux (Debian 10).
@@ -72,6 +80,14 @@ make pip
 
 The resulting package will be in **dist/**.
 
+## Generate a debian package
+
+```sh
+make debian
+```
+
+The generated packages is in the parent folder.
+
 ## Compatibility
 
 For now, this software was only tested on Linux (Debian 10).
@@ -96,7 +112,6 @@ For more information on Joyeuse, go to its [web site](https://www.joyeuse.io/).
 Here is my tentative TODO list, sorted by order of priorities (most priority
 first):
 
- * Debian packaging
  * Windows packaging
  * Input parameters validation
  * Auto-detect of the device

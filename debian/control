@@ -1,0 +1,22 @@
+Source: joyeuse
+Section: utils
+Priority: optional
+Maintainer: Nicolas Carrier <carrier.nicolas0@gmail.com>
+Build-Depends: debhelper-compat (= 10),
+               dh-python,
+               python3,
+               python3-setuptools,
+               python3-tk
+Standards-Version: 4.3.0
+Rules-Requires-Root: no
+Homepage: https://github.com/ncarrier/joyeuse
+Vcs-Browser: https://github.com/ncarrier/joyeuse
+
+Package: joyeuse
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends},
+         ${python3:Depends},
+         python3-tk
+Description: Configuration tool for the Joyeuse storyteller.
+ Provides a graphical for configuring and using the Joyeuse storyteller.

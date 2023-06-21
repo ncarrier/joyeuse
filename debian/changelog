@@ -1,0 +1,7 @@
+joyeuse (0.1.0) UNRELEASED; urgency=medium
+
+  * local package
+  * first release
+  * support of loading and modifying the SETTINGS.txt file
+
+ -- Nicolas Carrier <carrier.nicolas0@gmail.com>  Wed, 21 Jun 2023 20:51:10 +0200
