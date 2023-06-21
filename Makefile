@@ -35,4 +35,11 @@ clean:
 		../joyeuse_$(version_stripped)_all.deb \
 		../joyeuse_$(version_stripped)_amd64.build \
 		../joyeuse_$(version_stripped)_amd64.buildinfo \
-		../joyeuse_$(version_stripped)_amd64.changes \
+		../joyeuse_$(version_stripped)_amd64.changes
+
+.PHONY: stylecheck
+stylecheck:
+	flake8
+
+.PHONY: check
+check: all clean stylecheck
