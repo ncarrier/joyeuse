@@ -1,8 +1,3 @@
-'''
-Created on 19 juin 2023
-
-@author: nicolas
-'''
 from tkinter import Tk
 from tkinter import ttk
 from idlelib.tooltip import Hovertip

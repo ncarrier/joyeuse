@@ -11,11 +11,19 @@ fonctionnalités.
 Brancher la conteuse, puis :
 
 ```sh
-./joyeuse /chemin/vers/la/conteuse
+python3 -m joyeuse /chemin/vers/la/conteuse
 ```
 
 Il est possible de tester son fonctionnement en utilisant le dossier
 **example/copie** au lieu du chemin vers la conteuse.
+
+## Générer un package pip
+
+```sh
+make pip
+```
+
+Le package généré se trouve dans **dist/**.
 
 ## Compatibilité
 
@@ -50,11 +58,19 @@ Its current state is very basic and it's still severely lacking features.
 Plug the Joyeuse, then:
 
 ```sh
-./joyeuse /path/to/the/joyeuse
+python3 -m joyeuse /path/to/the/joyeuse
 ```
 
 It is possible to test how it works by using the **example/copie** instead of
 the path to the joyeuse.
+
+## Generate a pip package
+
+```sh
+make pip
+```
+
+The resulting package will be in **dist/**.
 
 ## Compatibility
 
@@ -80,7 +96,6 @@ For more information on Joyeuse, go to its [web site](https://www.joyeuse.io/).
 Here is my tentative TODO list, sorted by order of priorities (most priority
 first):
 
- * pip packaging
  * Debian packaging
  * Windows packaging
  * Input parameters validation
