@@ -102,7 +102,7 @@ class Settings(object):
         return self.__sections
 
     def save(self):
-        with open(self.__path + "~", "w") as f:
+        with open(self.__path, "w") as f:
             f.write(str(self))
 
     def __str__(self):

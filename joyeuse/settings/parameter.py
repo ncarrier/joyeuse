@@ -16,7 +16,6 @@ class Parameter(object):
         Constructor
         '''
         self.__name = name
-        self.__value = value
         self.__comments = []
         self.__var = StringVar(value=value)
 
@@ -24,7 +23,7 @@ class Parameter(object):
         self.__comments.append(comment)
 
     def __str__(self):
-        result = f"{self.__name}:{self.__value} {30 * '<'}\r\n"
+        result = f"{self.__name}:{self.value} {30 * '<'}\r\n"
 
         result += "".join([c + "\r\n" for c in self.__comments])
 
@@ -36,7 +35,7 @@ class Parameter(object):
 
     @property
     def value(self):
-        return self.__value
+        return self.__var.get()
 
     @property
     def comments(self):

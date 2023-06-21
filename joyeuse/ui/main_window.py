@@ -77,6 +77,7 @@ class MainWindow(object):
                 padx=(3, 3),
                 pady=(3, 3)
             )
+            p.var.trace("w", lambda a, b, c: self.__cube.settings.save())
             entry = ttk.Entry(sub_frame,
                               textvariable=p.var)
             entry.grid(column=1, row=p_index, sticky=tkinter.EW, pady=3,
@@ -117,6 +118,7 @@ class MainWindow(object):
             )
             entry = ttk.Entry(frame,
                               textvariable=p.var)
+            p.var.trace("w", lambda a, b, c: self.__cube.settings.save())
             entry.grid(column=1, row=p_index, sticky=tkinter.EW, pady=3,
                        padx=3)
             if len(p.comments) > 0:
@@ -131,6 +133,7 @@ class MainWindow(object):
             index = index + 1
 
     def load_cube(self, cube):
+        self.__cube = cube
         self.__load_cube_settings(cube.settings)
 
     def loop(self):
