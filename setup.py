@@ -60,6 +60,5 @@ setup(
         'console_scripts': [
             'joyeuse=joyeuse.__main__:main'
         ]
-    },
-    include_package_data=True
+    }
 )

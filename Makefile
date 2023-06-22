@@ -4,10 +4,10 @@ version_stripped := $(shell echo $(version) | sed 's/[abr].*//g')
 SHELL := /bin/bash
 .ONESHELL:
 .SHELLFLAGS := -ec
-python_version := 3.9.9
+python_version := 3.9.2
 
 .PHONY: all
-all: pip debian windows
+all: debian pip windows
 
 .PHONY: pip
 pip:
