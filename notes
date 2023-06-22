@@ -14,3 +14,12 @@ Fonctionnalités :
   * changement des sons
   * mise à jour
   * internationalisation
+
+dependences de build
+wine
+winetricks
+xvfb
+python3
+python3-tk
+devscripts
+expect
