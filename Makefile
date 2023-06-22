@@ -44,14 +44,22 @@ windows:
 	trap "set +e; wineserver --wait; kill -TERM $$!; rm -rf $${PREFIX}" EXIT
 	cd $${PREFIX}/python
 	unzip ../python-$(python_version)-embed-amd64.zip
+	pth=$$(ls $${PREFIX}/python/*._pth)
+	mv $${pth} $${pth//_/}
 	cd -
+
+	mkdir $${PREFIX}/python/plop
+	pzip=$$(ls $${PREFIX}/python/python*.zip)
+	cd $${PREFIX}/python/plop
+	unzip $${pzip}
+	cd -
+	rm $${pzip}
+	mv $${PREFIX}/python/plop $${PREFIX}/python/`basename $${pzip}`
 
 	echo "install the dependencies for joyeuse"
 	wget --directory-prefix=$${PREFIX}/python \
 		https://bootstrap.pypa.io/get-pip.py
 	cd $${PREFIX}/python
-	pth=$$(ls $${PREFIX}/python/*._pth)
-	mv $${pth} $${pth//_/}
 	unbuffer wine $${PREFIX}/python/python.exe ./get-pip.py
 	unbuffer wine $${PREFIX}/python/Scripts/pip.exe install \
 		pyinstaller==5.12.0
