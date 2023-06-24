@@ -4,7 +4,7 @@ version_stripped := $(shell echo $(version) | sed 's/[abr].*//g')
 SHELL := /bin/bash
 .ONESHELL:
 .SHELLFLAGS := -ec
-python_version := 3.9.2
+python_version := 3.9.9
 
 .PHONY: all
 all: debian pip windows
@@ -28,7 +28,7 @@ windows:
 	export WINEPREFIX=$${PREFIX}
 	unset DISPLAY
 	rm -rf $${PREFIX}
-	mkdir -p $${PREFIX}/python
+	mkdir -p $${PREFIX}
 	#export WINEDEBUG=err-all,warn-all,fixme-all,trace-all
 	wine ping > /dev/null || true
 	winetricks win10
