@@ -15,11 +15,12 @@ Fonctionnalités :
   * mise à jour
   * internationalisation
 
-dependences de build
-wine
-winetricks
-xvfb
-python3
-python3-tk
-devscripts
-expect
+# dependences de build
+apt install software-properties-common
+
+# add at least contrib section
+add-apt-repository contrib
+dpkg --add-architecture i386
+apt update
+
+apt install wine winetricks xvfb git make python3 python3-tk devscripts expect wget wine32
