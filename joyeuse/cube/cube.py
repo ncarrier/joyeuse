@@ -11,6 +11,7 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
+from PIL import ImageTk
 
 from joyeuse.settings.settings import Settings
 
@@ -25,7 +26,12 @@ class Cube(object):
         Constructor
         '''
         self.__settings = Settings(f"{path}/Secrets/SETTINGS.txt")
+        self.__icon = ImageTk.PhotoImage(file=fr"{path}/joyeuse.ico")
 
     @property
     def settings(self):
         return self.__settings
+
+    @property
+    def icon(self):
+        return self.__icon

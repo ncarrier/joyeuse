@@ -144,6 +144,7 @@ class MainWindow(object):
     def load_cube(self, cube):
         self.__cube = cube
         self.__load_cube_settings(cube.settings)
+        self.__root.iconphoto(True, cube.icon)
 
     def loop(self):
         self.__root.mainloop()
