@@ -62,7 +62,7 @@ class Settings(object):
         section = None
         sub_section = None
         parameter = None
-        with open(path, "r", newline='\r\n') as f:
+        with open(path, "r", encoding="UTF-8", newline='\r\n') as f:
             for line in f.readlines():
                 line = line.strip()
                 if self.__is_separation(line):
@@ -111,7 +111,7 @@ class Settings(object):
         return self.__sections
 
     def save(self):
-        with open(self.__path, "w") as f:
+        with open(self.__path, "w", encoding="UTF-8") as f:
             f.write(str(self))
 
     def __str__(self):
