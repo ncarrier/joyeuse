@@ -45,15 +45,18 @@ windows:
 	wine $${PREFIX}/python-$(python_version).exe /quiet PrependPath=1 Include_pip=1
 
 	echo "install the dependencies for joyeuse"
-	unbuffer wine pip install \
-		pyinstaller==4.10
+	unbuffer wine python -m pip install --upgrade pip
+	unbuffer wine pip install -r requirements.txt
 
 	echo "generate the windows executable"
 	unbuffer wine pyinstaller --noconsole \
 		--paths . --onefile --name joyeuse \
 		--exclude-module _bootlocale \
 		--hidden-import=tkinter \
-		./joyeuse/__main__.py
+		--hidden-import=pillow \
+		--collect-submodules=pillow \
+		script/joyeuse.py
+	chmod +x dist/joyeuse.exe
 
 .PHONY: clean
 clean:
