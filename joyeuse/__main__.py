@@ -17,7 +17,18 @@ from .ui.main_window import MainWindow
 from .cube.cube import Cube
 
 
+def usage(status):
+    print("Usage: joyeuse /path/to/joyeuse")
+    sys.exit(status)
+
+
 def main():
+    if len(sys.argv) != 2:
+        usage(1)
+
+    if sys.argv[1] in ["-h", "--help", "-?"]:
+        usage(0)
+
     window = MainWindow()
     cube = Cube(sys.argv[1])
     window.load_cube(cube)
