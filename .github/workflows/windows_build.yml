@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install . pyinstaller
+        pip install . -r requirements.txt
     - name: Build executable
       run: bash .github/scripts/build-win.sh
     - name: Archive artifact
