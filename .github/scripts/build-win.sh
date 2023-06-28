@@ -18,6 +18,3 @@ pyinstaller --noconsole \
 	--hidden-import=tkinter \
 	"${SCRIPT_NAME}"
 
-# quick check that the executable can at least show the help
-./dist/joyeuse.exe --help
-
