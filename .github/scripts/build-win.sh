@@ -6,6 +6,5 @@ pyinstaller --noconsole \
 	--paths . --onefile --name joyeuse \
 	--exclude-module _bootlocale \
 	--hidden-import=tkinter \
-	--hidden-import=pillow \
 	--collect-submodules=pillow \
 	"${PWD}/script/joyeuse.py"

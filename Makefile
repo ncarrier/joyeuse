@@ -53,7 +53,6 @@ windows:
 		--paths . --onefile --name joyeuse \
 		--exclude-module _bootlocale \
 		--hidden-import=tkinter \
-		--hidden-import=pillow \
 		--collect-submodules=pillow \
 		script/joyeuse.py
 	chmod +x dist/joyeuse.exe
