@@ -18,19 +18,21 @@ from .cube.cube import Cube
 
 
 def usage(status):
-    print("Usage: joyeuse /path/to/joyeuse")
+    print("Usage: joyeuse [/path/to/joyeuse]")
     sys.exit(status)
 
 
 def main():
-    if len(sys.argv) != 2:
+    if len(sys.argv) not in [1, 2]:
         usage(1)
 
-    if sys.argv[1] in ["-h", "--help", "-?"]:
+    if len(sys.argv) == 2 and sys.argv[1] in ["-h", "--help", "-?"]:
         usage(0)
 
     window = MainWindow()
-    cube = Cube(sys.argv[1])
+    cube = None
+    if len(sys.argv) == 2:
+        cube = Cube(sys.argv[1])
     window.load_cube(cube)
 
     window.loop()

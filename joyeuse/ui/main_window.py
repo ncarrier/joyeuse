@@ -16,20 +16,38 @@ from tkinter import Tk
 from tkinter import ttk
 from idlelib.tooltip import Hovertip
 import tkinter
+from joyeuse.cube.cube import Cube
 
 
 class MainWindow(object):
     '''
     classdocs
     '''
+    __period = 1  # in seconds
 
     def __init__(self):
         '''
         Constructor
         '''
+        self.__cube = None
         self.__root = Tk()
         self.__setup_window()
-        self.__setup_notebook()
+
+    def __unload_cube(self):
+        self.__notebook.destroy()
+        self.__cube = None
+
+    def __joyeuse_detector(self):
+        print("detect")
+        if self.__cube:
+            if not self.__cube.valid:
+                self.__unload_cube()
+        else:
+            cube = Cube.get_cube()
+            if cube:
+                self.load_cube(cube)
+
+        self.__root.after(1000 * self.__period, self.__joyeuse_detector)
 
     def __setup_window(self):
         self.__root.title("Joyeuse")
@@ -142,9 +160,12 @@ class MainWindow(object):
             index = index + 1
 
     def load_cube(self, cube):
-        self.__cube = cube
-        self.__load_cube_settings(cube.settings)
-        self.__root.iconphoto(True, cube.icon)
+        if cube is not None:
+            self.__cube = cube
+            self.__setup_notebook()
+            self.__load_cube_settings(cube.settings)
+            self.__root.iconphoto(True, cube.icon)
+        self.__joyeuse_detector()
 
     def loop(self):
         self.__root.mainloop()
