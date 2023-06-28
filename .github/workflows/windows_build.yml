@@ -1,4 +1,4 @@
-name: Generate Standalone Executable
+name: Generate Windows Executable
 
 on:
   push:

@@ -1,3 +1,5 @@
+![windows executable generation](https://github.com/ncarrier/joyeuse/actions/workflows/windows_build.yml/badge.svg?branch=master)
+
 # fr - Outil de configuration de la conteuse Joyeuse
 
 Cet outil permet de modifier les paramètres de la conteuse Joyeuse
