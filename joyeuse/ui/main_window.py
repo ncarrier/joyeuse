@@ -17,6 +17,7 @@ from tkinter import ttk
 from idlelib.tooltip import Hovertip
 import tkinter
 from joyeuse.cube.cube import Cube
+# from joyeuse.ui.input_validation import input_validation
 
 
 class MainWindow(object):
@@ -88,6 +89,11 @@ class MainWindow(object):
             self.__load_parameter(sub_frame, p, p_index)
             p_index += 1
 
+    def __get_input_widget(self, frame, var):
+        widget = ttk.Entry(frame, textvariable=var)
+
+        return widget
+
     def __load_parameter(self, frame, parameter, index):
         label = ttk.Label(frame, text=parameter.name)
         label.grid(
@@ -97,14 +103,12 @@ class MainWindow(object):
             padx=(3, 3),
             pady=(3, 3)
         )
-        entry = ttk.Entry(frame,
-                          textvariable=parameter.var)
+        widget = self.__get_input_widget(frame, parameter.var)
         parameter.var.trace("w", lambda a, b, c: self.__cube.settings.save())
-        entry.grid(column=1, row=index, sticky=tkinter.EW, pady=3,
-                   padx=3)
+        widget.grid(column=1, row=index, sticky=tkinter.EW, pady=3, padx=3)
         if len(parameter.comments) > 0:
             Hovertip(label, parameter.comments)
-            Hovertip(entry, parameter.comments)
+            Hovertip(widget, parameter.comments)
 
     def __load_cube_section(self, section, index):
         frame = ttk.LabelFrame(self.__settings, text=section.name)
