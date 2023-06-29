@@ -14,6 +14,7 @@
 
 import sys
 import re
+import os
 from joyeuse.settings.section import Section
 from joyeuse.settings.sub_section import SubSection
 from joyeuse.settings.parameter import Parameter
@@ -111,8 +112,11 @@ class Settings(object):
         return self.__sections
 
     def save(self):
-        with open(self.__path, "w", encoding="UTF-8") as f:
+        temp_path = f"{self.__path}~"
+        with open(temp_path, "w", encoding="UTF-8") as f:
             f.write(str(self))
+
+        os.rename(temp_path, self.__path)
 
     def __str__(self):
         result = "".join([s + "\r\n" for s in self.__preamble])
