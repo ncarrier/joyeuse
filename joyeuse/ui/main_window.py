@@ -38,7 +38,6 @@ class MainWindow(object):
         self.__cube = None
 
     def __joyeuse_detector(self):
-        print("detect")
         if self.__cube:
             if not self.__cube.valid:
                 self.__unload_cube()
