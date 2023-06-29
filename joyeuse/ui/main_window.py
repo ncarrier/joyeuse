@@ -96,23 +96,26 @@ class MainWindow(object):
         # load the parameters
         p_index = 0
         for p in sub_section.parameters:
-            label = ttk.Label(sub_frame, text=p.name)
-            label.grid(
-                column=0,
-                row=p_index,
-                sticky=tkinter.W,
-                padx=(3, 3),
-                pady=(3, 3)
-            )
-            p.var.trace("w", lambda a, b, c: self.__cube.settings.save())
-            entry = ttk.Entry(sub_frame,
-                              textvariable=p.var)
-            entry.grid(column=1, row=p_index, sticky=tkinter.EW, pady=3,
-                       padx=3)
-            if len(p.comments) > 0:
-                Hovertip(label, p.comments)
-                Hovertip(entry, p.comments)
+            self.__load_parameter(sub_frame, p, p_index)
             p_index += 1
+
+    def __load_parameter(self, frame, parameter, index):
+        label = ttk.Label(frame, text=parameter.name)
+        label.grid(
+            column=0,
+            row=index,
+            sticky=tkinter.W,
+            padx=(3, 3),
+            pady=(3, 3)
+        )
+        entry = ttk.Entry(frame,
+                          textvariable=parameter.var)
+        parameter.var.trace("w", lambda a, b, c: self.__cube.settings.save())
+        entry.grid(column=1, row=index, sticky=tkinter.EW, pady=3,
+                   padx=3)
+        if len(parameter.comments) > 0:
+            Hovertip(label, parameter.comments)
+            Hovertip(entry, parameter.comments)
 
     def __load_cube_section(self, section, index):
         frame = ttk.LabelFrame(self.__settings, text=section.name)
@@ -135,22 +138,7 @@ class MainWindow(object):
         # load the parameters
         p_index = ss_index
         for p in section.parameters:
-            label = ttk.Label(frame, text=p.name)
-            label.grid(
-                column=0,
-                row=p_index,
-                sticky=tkinter.W,
-                padx=(3, 3),
-                pady=(3, 3)
-            )
-            entry = ttk.Entry(frame,
-                              textvariable=p.var)
-            p.var.trace("w", lambda a, b, c: self.__cube.settings.save())
-            entry.grid(column=1, row=p_index, sticky=tkinter.EW, pady=3,
-                       padx=3)
-            if len(p.comments) > 0:
-                Hovertip(label, p.comments)
-                Hovertip(entry, p.comments)
+            self.__load_parameter(frame, p, p_index)
             p_index += 1
 
     def __load_cube_settings(self, settings):
