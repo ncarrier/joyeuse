@@ -11,7 +11,7 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
-from tkinter import IntVar, StringVar, BooleanVar
+from tkinter import IntVar, StringVar, BooleanVar, ttk
 
 
 class Setting(object):
@@ -25,15 +25,23 @@ class IntInRangeSetting(Setting):
     '''
     VAR_KLASS = IntVar
 
-    def get_value(self, var):
-        return str(var.get())
-
     def __init__(self, lower, upper):
         '''
         Constructor
         '''
         self.__lower = lower
         self.__upper = upper
+
+    def get_value(self, var):
+        return str(var.get())
+
+    def get_input_widget(self, parent, var):
+        return ttk.Spinbox(
+            parent,
+            from_=self.lower,
+            to=self.upper,
+            textvariable=var
+        )
 
     @property
     def lower(self):
@@ -64,12 +72,18 @@ class BoolSetting(Setting):
     def get_value(self, var):
         return "Y" if var.get() else "N"
 
+    def get_input_widget(self, parent, var):
+        return ttk.Checkbutton(parent, var=var)
+
 
 class UnknownSetting(Setting):
     VAR_KLASS = StringVar
 
     def get_value(self, var):
         return var.get()
+
+    def get_input_widget(self, parent, var):
+        return ttk.Entry(parent, textvariable=var)
 
 
 class InputValidation():

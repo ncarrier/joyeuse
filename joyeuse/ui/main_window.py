@@ -92,25 +92,17 @@ class MainWindow(object):
 
     def __get_input_widget(self, frame, parameter):
         validation_obj = InputValidation.get(parameter.name)
+
         if validation_obj.__class__ == IntInRangeSetting:
             print(f"{parameter.name}: IntInRangeSetting")
-            widget = ttk.Spinbox(
-                frame,
-                from_=validation_obj.lower,
-                to=validation_obj.upper,
-                textvariable=parameter.var
-            )
         elif validation_obj.__class__ == FalseOrIntInRangeSetting:
             print(f"{parameter.name}: FalseOrIntInRangeSetting")
-            widget = ttk.Entry(frame, textvariable=parameter.var)
         elif validation_obj.__class__ == BoolSetting:
             print(f"{parameter.name}: BoolSetting")
-            widget = ttk.Checkbutton(frame, var=parameter.var)
         else:
             print(f"{parameter.name}: unknown class")
-            widget = ttk.Entry(frame, textvariable=parameter.var)
 
-        return widget
+        return validation_obj.get_input_widget(frame, parameter.var)
 
     def __load_parameter(self, frame, parameter, index):
         label = ttk.Label(frame, text=parameter.name)
