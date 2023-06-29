@@ -65,7 +65,6 @@ class MainWindow(object):
         self.__setup_tabs(notebook)
 
     def __setup_tabs(self, notebook):
-        # TODO move in 3rd position
         self.__settings = settings = ttk.Frame(notebook)
         self.__settings.pack(
             fill=tkinter.BOTH,
@@ -73,15 +72,6 @@ class MainWindow(object):
             anchor=tkinter.CENTER
         )
         notebook.add(settings, text='Paramètres')
-
-        self.__tutorials = tutorials = ttk.Frame(notebook)
-        notebook.add(tutorials, text='Tutoriels')
-
-        self.__music = music = ttk.Frame(notebook)
-        notebook.add(music, text='Musiques / histoires')
-
-        self.__sounds = sounds = ttk.Frame(notebook)
-        notebook.add(sounds, text='Bruitages')
 
         notebook.pack(expand=1, fill="both")
 
