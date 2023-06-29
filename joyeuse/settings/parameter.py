@@ -11,13 +11,13 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
+from joyeuse.ui.input_validation import InputValidation
 
 
 class Parameter(object):
     '''
     classdocs
     '''
-
     def __init__(self, name, value):
         '''
         Constructor
@@ -25,7 +25,8 @@ class Parameter(object):
         self.__name = name
         self.__value = value
         self.__comments = []
-        self.__var = None
+        self.__validation = InputValidation.get(name)
+        self.__var = self.__validation.get_var(value=value)
 
     def add_comment(self, comment):
         self.__comments.append(comment)
@@ -43,7 +44,8 @@ class Parameter(object):
 
     @property
     def value(self):
-        return self.__value
+        print(f"{self.__var.get()}")
+        return self.__validation.get_value(self.__var)
 
     @property
     def comments(self):

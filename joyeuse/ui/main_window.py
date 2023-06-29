@@ -17,8 +17,7 @@ from tkinter import ttk
 from idlelib.tooltip import Hovertip
 import tkinter
 from joyeuse.cube.cube import Cube
-from tkinter import StringVar, BooleanVar
-from joyeuse.ui.input_validation import input_validation, IntInRangeSetting
+from joyeuse.ui.input_validation import IntInRangeSetting, InputValidation
 from joyeuse.ui.input_validation import BoolSetting, FalseOrIntInRangeSetting
 
 
@@ -92,22 +91,23 @@ class MainWindow(object):
             p_index += 1
 
     def __get_input_widget(self, frame, parameter):
-        validation_obj = input_validation.get(parameter.name, None)
+        validation_obj = InputValidation.get(parameter.name)
         if validation_obj.__class__ == IntInRangeSetting:
             print(f"{parameter.name}: IntInRangeSetting")
-            parameter.var = StringVar(value=parameter.value)
-            widget = ttk.Entry(frame, textvariable=parameter.var)
+            widget = ttk.Spinbox(
+                frame,
+                from_=validation_obj.lower,
+                to=validation_obj.upper,
+                textvariable=parameter.var
+            )
         elif validation_obj.__class__ == FalseOrIntInRangeSetting:
             print(f"{parameter.name}: FalseOrIntInRangeSetting")
-            parameter.var = StringVar(value=parameter.value)
             widget = ttk.Entry(frame, textvariable=parameter.var)
         elif validation_obj.__class__ == BoolSetting:
             print(f"{parameter.name}: BoolSetting")
-            parameter.var = BooleanVar(value=(parameter.value == "Y"))
-            widget = ttk.Checkbutton(frame, text="text", var=parameter.var)
+            widget = ttk.Checkbutton(frame, var=parameter.var)
         else:
             print(f"{parameter.name}: unknown class")
-            parameter.var = StringVar(value=parameter.value)
             widget = ttk.Entry(frame, textvariable=parameter.var)
 
         return widget
