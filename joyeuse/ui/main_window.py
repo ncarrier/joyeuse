@@ -18,7 +18,8 @@ from idlelib.tooltip import Hovertip
 import tkinter
 from joyeuse.cube.cube import Cube
 from tkinter import StringVar
-# from joyeuse.ui.input_validation import input_validation
+from joyeuse.ui.input_validation import input_validation, IntInRangeSetting
+from joyeuse.ui.input_validation import BoolSetting, FalseOrIntInRangeSetting
 
 
 class MainWindow(object):
@@ -90,8 +91,17 @@ class MainWindow(object):
             self.__load_parameter(sub_frame, p, p_index)
             p_index += 1
 
-    def __get_input_widget(self, frame, var):
-        widget = ttk.Entry(frame, textvariable=var)
+    def __get_input_widget(self, frame, parameter):
+        validation_obj = input_validation.get(parameter.name, None)
+        if validation_obj.__class__ == IntInRangeSetting:
+            print(f"{parameter.name}: IntInRangeSetting")
+        elif validation_obj.__class__ == FalseOrIntInRangeSetting:
+            print(f"{parameter.name}: FalseOrIntInRangeSetting")
+        elif validation_obj.__class__ == BoolSetting:
+            print(f"{parameter.name}: BoolSetting")
+        else:
+            print(f"{parameter.name}: unknown class")
+        widget = ttk.Entry(frame, textvariable=parameter.var)
 
         return widget
 
@@ -105,7 +115,7 @@ class MainWindow(object):
             pady=(3, 3)
         )
         parameter.var = StringVar(value=parameter.value)
-        widget = self.__get_input_widget(frame, parameter.var)
+        widget = self.__get_input_widget(frame, parameter)
         parameter.var.trace("w", lambda a, b, c: self.__cube.settings.save())
         widget.grid(column=1, row=index, sticky=tkinter.EW, pady=3, padx=3)
         if len(parameter.comments) > 0:
