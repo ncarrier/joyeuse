@@ -64,4 +64,4 @@ class Section(object):
 
     @property
     def comments(self):
-        return "\n".join([l for l in self.__comments if len(l) > 0])
+        return "\n".join([c for c in self.__comments if len(c) > 0])
