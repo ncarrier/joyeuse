@@ -17,7 +17,7 @@ from tkinter import ttk
 from idlelib.tooltip import Hovertip
 import tkinter
 from joyeuse.cube.cube import Cube
-from tkinter import StringVar
+from tkinter import StringVar, BooleanVar
 from joyeuse.ui.input_validation import input_validation, IntInRangeSetting
 from joyeuse.ui.input_validation import BoolSetting, FalseOrIntInRangeSetting
 
@@ -95,13 +95,20 @@ class MainWindow(object):
         validation_obj = input_validation.get(parameter.name, None)
         if validation_obj.__class__ == IntInRangeSetting:
             print(f"{parameter.name}: IntInRangeSetting")
+            parameter.var = StringVar(value=parameter.value)
+            widget = ttk.Entry(frame, textvariable=parameter.var)
         elif validation_obj.__class__ == FalseOrIntInRangeSetting:
             print(f"{parameter.name}: FalseOrIntInRangeSetting")
+            parameter.var = StringVar(value=parameter.value)
+            widget = ttk.Entry(frame, textvariable=parameter.var)
         elif validation_obj.__class__ == BoolSetting:
             print(f"{parameter.name}: BoolSetting")
+            parameter.var = BooleanVar(value=(parameter.value == "Y"))
+            widget = ttk.Checkbutton(frame, text="text", var=parameter.var)
         else:
             print(f"{parameter.name}: unknown class")
-        widget = ttk.Entry(frame, textvariable=parameter.var)
+            parameter.var = StringVar(value=parameter.value)
+            widget = ttk.Entry(frame, textvariable=parameter.var)
 
         return widget
 
@@ -114,7 +121,6 @@ class MainWindow(object):
             padx=(3, 3),
             pady=(3, 3)
         )
-        parameter.var = StringVar(value=parameter.value)
         widget = self.__get_input_widget(frame, parameter)
         parameter.var.trace("w", lambda a, b, c: self.__cube.settings.save())
         widget.grid(column=1, row=index, sticky=tkinter.EW, pady=3, padx=3)
