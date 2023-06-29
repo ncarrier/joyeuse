@@ -17,6 +17,7 @@ from tkinter import ttk
 from idlelib.tooltip import Hovertip
 import tkinter
 from joyeuse.cube.cube import Cube
+from tkinter import StringVar
 # from joyeuse.ui.input_validation import input_validation
 
 
@@ -103,6 +104,7 @@ class MainWindow(object):
             padx=(3, 3),
             pady=(3, 3)
         )
+        parameter.var = StringVar(value=parameter.value)
         widget = self.__get_input_widget(frame, parameter.var)
         parameter.var.trace("w", lambda a, b, c: self.__cube.settings.save())
         widget.grid(column=1, row=index, sticky=tkinter.EW, pady=3, padx=3)

@@ -12,8 +12,6 @@
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 
-from tkinter import StringVar
-
 
 class Parameter(object):
     '''
@@ -25,8 +23,9 @@ class Parameter(object):
         Constructor
         '''
         self.__name = name
+        self.__value = value
         self.__comments = []
-        self.__var = StringVar(value=value)
+        self.__var = None
 
     def add_comment(self, comment):
         self.__comments.append(comment)
@@ -44,7 +43,7 @@ class Parameter(object):
 
     @property
     def value(self):
-        return self.__var.get()
+        return self.__value
 
     @property
     def comments(self):
@@ -53,3 +52,7 @@ class Parameter(object):
     @property
     def var(self):
         return self.__var
+
+    @var.setter
+    def var(self, var):
+        self.__var = var
