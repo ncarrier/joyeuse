@@ -22,6 +22,7 @@ class Cube(object):
     '''
     classdocs
     '''
+    EXTRA_LOCATIONS = []
 
     @staticmethod
     def __get_subdirs(a_dir):
@@ -31,6 +32,8 @@ class Cube(object):
     @staticmethod
     def __get_search_locations():
         return (
+            # passed by parameter
+            Cube.EXTRA_LOCATIONS +
             # linux
             Cube.__get_subdirs(f"/media/{os.getlogin()}") +
             # windows
@@ -42,7 +45,7 @@ class Cube(object):
         cube = None
         for loc in Cube.__get_search_locations():
             try:
-                cube = Cube(loc)
+                cube = Cube(loc, False)
                 print(f"detected joyeuse in {loc}")
                 break
             except (AttributeError, FileNotFoundError):
@@ -50,11 +53,13 @@ class Cube(object):
 
         return cube
 
-    def __init__(self, path):
+    def __init__(self, path, store_extra_location=True):
         '''
         Constructor
         '''
         self.__path = path
+        if store_extra_location:
+            Cube.EXTRA_LOCATIONS.append(path)
         self.__settings = Settings(f"{path}/Secrets/SETTINGS.txt")
         self.__icon = ImageTk.PhotoImage(file=fr"{path}/joyeuse.ico")
 
