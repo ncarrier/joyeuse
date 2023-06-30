@@ -112,6 +112,7 @@ class Settings(object):
         return self.__sections
 
     def save(self):
+        print(f"Saving to {self.__path}")
         temp_path = f"{self.__path}~"
         with open(temp_path, "w", encoding="UTF-8") as f:
             f.write(str(self))

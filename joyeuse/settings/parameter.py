@@ -44,8 +44,9 @@ class Parameter(object):
 
     @property
     def value(self):
-        print(f"{self.__var.get()}")
-        return self.__validation.get_value(self.__var)
+        value = self.__validation.get_value(self.__var)
+        print(value)
+        return value
 
     @property
     def comments(self):

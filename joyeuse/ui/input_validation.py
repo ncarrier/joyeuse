@@ -11,7 +11,7 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
-from tkinter import IntVar, StringVar, BooleanVar, ttk
+from tkinter import IntVar, StringVar, BooleanVar, ttk, Frame
 
 
 class Setting(object):
@@ -56,11 +56,46 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
     '''
     classdocs
     '''
-    VAR_KLASS = IntVar
+    VAR_KLASS = StringVar
 
-    def get_value(self, var):
-        value = var.get()
-        return "N" if value < 10 else str(value)
+    class __SpinboxWithCheckButton(Frame):
+        def __init__(self, parent, setting, var):
+            Frame.__init__(self, parent)
+            enabled = var.get() == "N"
+            print(enabled)
+            self.__boolean_var = BooleanVar(value=(not enabled))
+            self.__check_button = ttk.Checkbutton(self, var=self.__boolean_var)
+            self.__check_button.pack(side="left")
+            int_value = int(var.get()) if not enabled else setting.lower - 1
+            print(int_value)
+            self.__int_var = IntVar(value=int_value)
+            self.__spin_box = ttk.Spinbox(
+                self,
+                from_=setting.lower,
+                to=setting.upper,
+                textvariable=self.__int_var
+            )
+            self.__spin_box.pack(side="right", fill="both")
+
+        @property
+        def enabled(self):
+            print(f"*** {self.__boolean_var.get()} ***")
+            return self.__boolean_var.get()
+
+        @property
+        def value(self):
+            return self.__int_var.get()
+
+    def get_value(self, _):
+        return "N" if self.__widget.enabled else str(self.__widget.value)
+
+    def get_input_widget(self, parent, var):
+        self.__widget = FalseOrIntInRangeSetting.__SpinboxWithCheckButton(
+            parent,
+            self,
+            var
+        )
+        return self.__widget
 
 
 class BoolSetting(Setting):
@@ -90,7 +125,7 @@ class InputValidation():
     # must be kept in sync with the supported parameters in SETTINGS.TXT
     __input_validation = {
         "volumeMax": IntInRangeSetting(10, 100),
-        # "volumePlayFixed": FalseOrIntInRangeSetting(10, 100),
+        "volumePlayFixed": FalseOrIntInRangeSetting(10, 100),
         "volumeOn": IntInRangeSetting(10, 100),
         "volumeOff": IntInRangeSetting(10, 100),
         "nightMode": BoolSetting(),

@@ -17,8 +17,7 @@ from tkinter import ttk
 from idlelib.tooltip import Hovertip
 import tkinter
 from joyeuse.cube.cube import Cube
-from joyeuse.ui.input_validation import IntInRangeSetting, InputValidation
-from joyeuse.ui.input_validation import BoolSetting, FalseOrIntInRangeSetting
+from joyeuse.ui.input_validation import InputValidation
 
 
 class MainWindow(object):
@@ -32,7 +31,7 @@ class MainWindow(object):
         Constructor
         '''
         self.__cube = None
-        self.__root = Tk()
+        self.__root = Tk(className='joyeuse')
         self.__setup_window()
 
     def __unload_cube(self):
@@ -92,15 +91,6 @@ class MainWindow(object):
 
     def __get_input_widget(self, frame, parameter):
         validation_obj = InputValidation.get(parameter.name)
-
-        if validation_obj.__class__ == IntInRangeSetting:
-            print(f"{parameter.name}: IntInRangeSetting")
-        elif validation_obj.__class__ == FalseOrIntInRangeSetting:
-            print(f"{parameter.name}: FalseOrIntInRangeSetting")
-        elif validation_obj.__class__ == BoolSetting:
-            print(f"{parameter.name}: BoolSetting")
-        else:
-            print(f"{parameter.name}: unknown class")
 
         return validation_obj.get_input_widget(frame, parameter.var)
 
