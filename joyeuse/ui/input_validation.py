@@ -61,13 +61,9 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
     class __SpinboxWithCheckButton(Frame):
         def __init__(self, parent, setting, var):
             Frame.__init__(self, parent)
-            enabled = var.get() == "N"
-            print(enabled)
-            self.__boolean_var = BooleanVar(value=(not enabled))
-            self.__check_button = ttk.Checkbutton(self, var=self.__boolean_var)
-            self.__check_button.pack(side="left")
-            int_value = int(var.get()) if not enabled else setting.lower - 1
-            print(int_value)
+            checked = var.get() != "N"
+            int_value = int(var.get()) if checked else setting.lower
+
             self.__int_var = IntVar(value=int_value)
             self.__spin_box = ttk.Spinbox(
                 self,
@@ -77,17 +73,27 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
             )
             self.__spin_box.pack(side="right", fill="both")
 
+            self.__boolean_var = BooleanVar(value=checked)
+            cb = ttk.Checkbutton(self, var=self.__boolean_var,
+                                 command=lambda: self.__check())
+            cb.pack(side="left")
+            self.__check_button = cb
+            self.__check()
+
+        def __check(self):
+            state = "disabled" if self.checked else "enabled"
+            self.__spin_box.config(state=state)
+
         @property
-        def enabled(self):
-            print(f"*** {self.__boolean_var.get()} ***")
-            return self.__boolean_var.get()
+        def checked(self):
+            return not self.__boolean_var.get()
 
         @property
         def value(self):
             return self.__int_var.get()
 
     def get_value(self, _):
-        return "N" if self.__widget.enabled else str(self.__widget.value)
+        return "N" if self.__widget.checked else str(self.__widget.value)
 
     def get_input_widget(self, parent, var):
         self.__widget = FalseOrIntInRangeSetting.__SpinboxWithCheckButton(

@@ -45,7 +45,6 @@ class Parameter(object):
     @property
     def value(self):
         value = self.__validation.get_value(self.__var)
-        print(value)
         return value
 
     @property
