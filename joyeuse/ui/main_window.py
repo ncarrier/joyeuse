@@ -89,10 +89,11 @@ class MainWindow(object):
             self.__load_parameter(sub_frame, p, p_index)
             p_index += 1
 
-    def __get_input_widget(self, frame, parameter):
+    def __get_input_widget(self, frame, parameter, edit_action):
         validation_obj = InputValidation.get(parameter.name)
 
-        return validation_obj.get_input_widget(frame, parameter.var)
+        return validation_obj.get_input_widget(frame, parameter.var,
+                                               edit_action)
 
     def __load_parameter(self, frame, parameter, index):
         label = ttk.Label(frame, text=parameter.name)
@@ -103,8 +104,11 @@ class MainWindow(object):
             padx=(3, 3),
             pady=(3, 3)
         )
-        widget = self.__get_input_widget(frame, parameter)
-        parameter.var.trace("w", lambda a, b, c: self.__cube.settings.save())
+        widget = self.__get_input_widget(
+            frame,
+            parameter,
+            lambda a, b, c: self.__cube.settings.save()
+        )
         widget.grid(column=1, row=index, sticky=tkinter.EW, pady=3, padx=3)
         if len(parameter.comments) > 0:
             Hovertip(label, parameter.comments)

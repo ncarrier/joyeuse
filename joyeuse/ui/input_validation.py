@@ -35,7 +35,8 @@ class IntInRangeSetting(Setting):
     def get_value(self, var):
         return str(var.get())
 
-    def get_input_widget(self, parent, var):
+    def get_input_widget(self, parent, var, edit_action):
+        var.trace("w", edit_action)
         return ttk.Spinbox(
             parent,
             from_=self.lower,
@@ -59,12 +60,13 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
     VAR_KLASS = StringVar
 
     class __SpinboxWithCheckButton(Frame):
-        def __init__(self, parent, setting, var):
+        def __init__(self, parent, setting, var, edit_action):
             Frame.__init__(self, parent)
             checked = var.get() != "N"
             int_value = int(var.get()) if checked else setting.lower
 
             self.__int_var = IntVar(value=int_value)
+            self.__int_var.trace("w", edit_action)
             self.__spin_box = ttk.Spinbox(
                 self,
                 from_=setting.lower,
@@ -74,6 +76,7 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
             self.__spin_box.pack(side="right", fill="both")
 
             self.__boolean_var = BooleanVar(value=checked)
+            self.__boolean_var.trace("w", edit_action)
             cb = ttk.Checkbutton(self, var=self.__boolean_var,
                                  command=lambda: self.__check())
             cb.pack(side="left")
@@ -95,11 +98,12 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
     def get_value(self, _):
         return "N" if self.__widget.checked else str(self.__widget.value)
 
-    def get_input_widget(self, parent, var):
+    def get_input_widget(self, parent, var, edit_action):
         self.__widget = FalseOrIntInRangeSetting.__SpinboxWithCheckButton(
             parent,
             self,
-            var
+            var,
+            edit_action
         )
         return self.__widget
 
@@ -113,7 +117,8 @@ class BoolSetting(Setting):
     def get_value(self, var):
         return "Y" if var.get() else "N"
 
-    def get_input_widget(self, parent, var):
+    def get_input_widget(self, parent, var, edit_action):
+        var.trace("w", edit_action)
         return ttk.Checkbutton(parent, var=var)
 
 
@@ -123,7 +128,7 @@ class UnknownSetting(Setting):
     def get_value(self, var):
         return var.get()
 
-    def get_input_widget(self, parent, var):
+    def get_input_widget(self, parent, var, edit_action):
         return ttk.Entry(parent, textvariable=var)
 
 
