@@ -3,7 +3,7 @@ name: Generate Windows Executable
 on:
   workflow_dispatch:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "test-windows" ]
 
 jobs:
   generate:
