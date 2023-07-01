@@ -19,7 +19,7 @@ class Parameter(object):
     '''
     classdocs
     '''
-    def __init__(self, name, value):
+    def __init__(self, name, value, suffix):
         '''
         Constructor
         '''
@@ -28,12 +28,13 @@ class Parameter(object):
         self.__comments = []
         self.__validation = InputValidation.get(name)
         self.__var = self.__validation.get_var(value=value)
+        self.__suffix = suffix
 
     def add_comment(self, comment):
         self.__comments.append(comment)
 
     def __str__(self):
-        result = f"{self.__name}:{self.value} {30 * '<'}{Compat.newline}"
+        result = f"{self.__name}:{self.value} {self.__suffix}{Compat.newline}"
 
         result += "".join([c + Compat.newline for c in self.__comments])
 

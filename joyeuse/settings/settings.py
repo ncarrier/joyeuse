@@ -28,7 +28,7 @@ class Settings(object):
     SECTION_TITLE = u"^[0-9]\\. (.*)$"
     SEPARATION = u'^¨+$'
     SUB_SECTION_TITLE = u"^[0-9]\\.[0-9] .*$"
-    PARAMETER = u"^([a-zA-Z]*):([0-9a-zA-Z]+) +<+$"
+    PARAMETER = u"^([a-zA-Z]*):([0-9a-zA-Z]+) +(<+)$"
 
     def __compile_regexes(self):
         self.__section_title_re = re.compile(Settings.SECTION_TITLE,
@@ -96,7 +96,10 @@ class Settings(object):
 
                 match = self.__is_parameter(line)
                 if match:
-                    parameter = Parameter(match.group(1), match.group(2))
+                    parameter = Parameter(
+                        match.group(1),
+                        match.group(2),
+                        match.group(3))
                     if sub_section is not None:
                         sub_section.add_parameter(parameter)
                     else:
