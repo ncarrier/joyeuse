@@ -41,7 +41,8 @@ class IntInRangeSetting(Setting):
             parent,
             from_=self.lower,
             to=self.upper,
-            textvariable=var
+            textvariable=var,
+            width=3
         )
 
     @property
@@ -71,7 +72,8 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
                 self,
                 from_=setting.lower,
                 to=setting.upper,
-                textvariable=self.__int_var
+                textvariable=self.__int_var,
+                width=3
             )
             self.__spin_box.pack(side="right", fill="both")
 
