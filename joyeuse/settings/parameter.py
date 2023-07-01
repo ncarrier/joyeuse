@@ -13,9 +13,10 @@
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 from joyeuse.ui.input_validation import InputValidation
 from joyeuse.misc.compat import Compat
+from joyeuse.settings.item import Item
 
 
-class Parameter(object):
+class Parameter(Item):
     '''
     classdocs
     '''
@@ -23,35 +24,23 @@ class Parameter(object):
         '''
         Constructor
         '''
-        self.__name = name
+        super().__init__(name)
         self.__value = value
-        self.__comments = []
         self.__validation = InputValidation.get(name)
         self.__var = self.__validation.get_var(value=value)
         self.__suffix = suffix
 
-    def add_comment(self, comment):
-        self.__comments.append(comment)
-
     def __str__(self):
-        result = f"{self.__name}:{self.value} {self.__suffix}{Compat.newline}"
+        result = f"{self.name}:{self.value} {self.__suffix}{Compat.newline}"
 
-        result += "".join([c + Compat.newline for c in self.__comments])
+        result += "".join([c + Compat.newline for c in self._comments])
 
         return result
-
-    @property
-    def name(self):
-        return self.__name
 
     @property
     def value(self):
         value = self.__validation.get_value(self.__var)
         return value
-
-    @property
-    def comments(self):
-        return "\n".join([c for c in self.__comments if len(c) > 0])
 
     @property
     def var(self):

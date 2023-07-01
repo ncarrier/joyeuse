@@ -14,9 +14,10 @@
 
 import re
 from joyeuse.misc.compat import Compat
+from joyeuse.settings.item import Item
 
 
-class Section(object):
+class Section(Item):
     '''
     classdocs
     '''
@@ -26,11 +27,10 @@ class Section(object):
         '''
         Constructor
         '''
-        self.__name = name
+        super().__init__(name)
         self.__sub_sections = []
-        self.__comments = []
         self.__parameters = []
-        self.__separation_length = len(self.__name)
+        self.__separation_length = len(self.name)
 
     def add_parameter(self, parameter):
         self.__parameters.append(parameter)
@@ -38,13 +38,10 @@ class Section(object):
     def add_subsection(self, sub_section):
         self.__sub_sections.append(sub_section)
 
-    def add_comment(self, comment):
-        self.__comments.append(comment)
-
     def __str__(self):
-        result = f"{self.__name}{Compat.newline}"
+        result = f"{self._name}{Compat.newline}"
         result += self.__separation_length * '¨' + Compat.newline
-        result += "".join([c + Compat.newline for c in self.__comments])
+        result += "".join([c + Compat.newline for c in self._comments])
         result += "".join([str(p) for p in self.__parameters])
         result += "".join([str(s) for s in self.__sub_sections])
 
@@ -55,7 +52,7 @@ class Section(object):
 
     @property
     def name(self):
-        m = re.match(Section.SECTION_TITLE, self.__name, re.UNICODE)
+        m = re.match(Section.SECTION_TITLE, self._name, re.UNICODE)
 
         return m.group(1).capitalize()
 
@@ -66,7 +63,3 @@ class Section(object):
     @property
     def parameters(self):
         return self.__parameters
-
-    @property
-    def comments(self):
-        return Compat.newline.join([c for c in self.__comments if len(c) > 0])
