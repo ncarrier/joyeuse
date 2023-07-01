@@ -1,8 +1,18 @@
-détection des conteuses présentes ?
+Pour version 1.0
+ * résoudre le bug du cr cr lf sous windows -> ok
+ * minimiser le diff sur la config -> ok
+ * aller à la ligne dans les infobulles -> ok
+ * refaire le layout
+ * mettre en place le workflow de publication de releases
+ * tester avec du vrai hw
+ * tester sur windows :grin:
+
+détection des conteuses présentes ? -> ok
 
 
 Onglets :
   * tutoriels
+  * bibliothèque
   * histoires / musiques
   * paramètres
   * bruitages
