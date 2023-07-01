@@ -61,7 +61,7 @@ class MainWindow(object):
             fill=tkinter.BOTH,
             expand=1,
             padx=(6, 6),
-            pady=(6, 0)
+            pady=(6, 6)
         )
         self.__setup_tabs(notebook)
 
