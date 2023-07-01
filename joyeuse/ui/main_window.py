@@ -66,20 +66,22 @@ class MainWindow(object):
         self.__setup_tabs(notebook)
 
     def __setup_tabs(self, notebook):
-        self.__settings = settings = ttk.Frame(notebook)
+        self.__settings = settings = tkinter.Frame(notebook)
         self.__settings.pack(
             fill=tkinter.BOTH,
-            expand=True,
-            anchor=tkinter.CENTER
+            expand=True
         )
+        self.__settings.columnconfigure(0, weight=1)
         notebook.add(settings, text='Paramètres')
 
         notebook.pack(expand=1, fill="both")
 
     def __load_cube_sub_section(self, frame, sub_section, index):
-        sub_frame = ttk.LabelFrame(frame, text=sub_section.name)
+        sub_frame = tkinter.LabelFrame(frame, text=sub_section.name)
         sub_frame.grid(row=index, column=0, sticky=tkinter.EW,
                        padx=(6, 6), pady=(6, 6))
+        sub_frame.columnconfigure(0, weight=1)
+        sub_frame.columnconfigure(1, weight=1)
         if len(sub_section.comments) > 0:
             Hovertip(sub_frame, sub_section.comments)
 
@@ -96,7 +98,7 @@ class MainWindow(object):
                                                edit_action)
 
     def __load_parameter(self, frame, parameter, index):
-        label = ttk.Label(frame, text=parameter.name)
+        label = tkinter.Label(frame, text=parameter.name)
         label.grid(
             column=0,
             row=index,
@@ -109,13 +111,13 @@ class MainWindow(object):
             parameter,
             lambda a, b, c: self.__cube.settings.save()
         )
-        widget.grid(column=1, row=index, sticky=tkinter.EW, pady=3, padx=3)
+        widget.grid(column=1, row=index, sticky=tkinter.E, pady=3, padx=3)
         if len(parameter.comments) > 0:
             Hovertip(label, parameter.comments)
             Hovertip(widget, parameter.comments)
 
     def __load_cube_section(self, section, index):
-        frame = ttk.LabelFrame(self.__settings, text=section.name)
+        frame = tkinter.LabelFrame(self.__settings, text=section.name)
         frame.grid(
             row=index,
             column=0,
@@ -123,6 +125,7 @@ class MainWindow(object):
             padx=(6, 6),
             pady=(6, 6)
         )
+        frame.columnconfigure(0, weight=1)
         if len(section.comments) > 0:
             Hovertip(frame, section.comments)
 
