@@ -73,6 +73,7 @@ class Settings(object):
             for line in f.readlines():
                 line = line.strip()
                 if self.__is_separation(line):
+                    section.set_separation_length(len(line))
                     continue
                 if self.__is_section_title(line):
                     section = Section(line)

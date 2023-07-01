@@ -30,6 +30,7 @@ class Section(object):
         self.__sub_sections = []
         self.__comments = []
         self.__parameters = []
+        self.__separation_length = len(self.__name)
 
     def add_parameter(self, parameter):
         self.__parameters.append(parameter)
@@ -42,12 +43,15 @@ class Section(object):
 
     def __str__(self):
         result = f"{self.__name}{Compat.newline}"
-        result += len(self.__name) * '¨' + Compat.newline
+        result += self.__separation_length * '¨' + Compat.newline
         result += "".join([c + Compat.newline for c in self.__comments])
         result += "".join([str(p) for p in self.__parameters])
         result += "".join([str(s) for s in self.__sub_sections])
 
         return result
+
+    def set_separation_length(self, length):
+        self.__separation_length = length
 
     @property
     def name(self):
