@@ -17,9 +17,8 @@ from joyeuse.settings.item import Item
 
 
 class Parameter(Item):
-    '''
-    classdocs
-    '''
+    PARAMETER = u"^([a-zA-Z]*):([0-9a-zA-Z]+) +(<+)$"
+
     def __init__(self, name, value, suffix):
         '''
         Constructor

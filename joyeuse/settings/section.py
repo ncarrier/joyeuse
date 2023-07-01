@@ -22,6 +22,7 @@ class Section(Item):
     classdocs
     '''
     SECTION_TITLE = u"^[0-9]\\. (.*)$"
+    SEPARATION = u'^¨+$'
 
     def __init__(self, name):
         '''

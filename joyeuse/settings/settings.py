@@ -22,21 +22,13 @@ from joyeuse.misc.compat import Compat
 
 
 class Settings(object):
-    '''
-    classdocs
-    '''
-    SECTION_TITLE = u"^[0-9]\\. (.*)$"
-    SEPARATION = u'^¨+$'
-    SUB_SECTION_TITLE = u"^[0-9]\\.[0-9] .*$"
-    PARAMETER = u"^([a-zA-Z]*):([0-9a-zA-Z]+) +(<+)$"
-
     def __compile_regexes(self):
-        self.__section_title_re = re.compile(Settings.SECTION_TITLE,
+        self.__section_title_re = re.compile(Section.SECTION_TITLE,
                                              re.UNICODE)
-        self.__separation_re = re.compile(Settings.SEPARATION, re.UNICODE)
-        self.__sub_section_title_re = re.compile(Settings.SUB_SECTION_TITLE,
+        self.__separation_re = re.compile(Section.SEPARATION, re.UNICODE)
+        self.__sub_section_title_re = re.compile(SubSection.SUB_SECTION_TITLE,
                                                  re.UNICODE)
-        self.__parameter_re = re.compile(Settings.PARAMETER, re.UNICODE)
+        self.__parameter_re = re.compile(Parameter.PARAMETER, re.UNICODE)
 
     def __is_section_title(self, line):
         return self.__section_title_re.match(line)
