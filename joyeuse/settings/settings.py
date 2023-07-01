@@ -117,7 +117,7 @@ class Settings(object):
         with open(temp_path, "w", encoding="UTF-8") as f:
             f.write(str(self))
 
-        os.rename(temp_path, self.__path)
+        os.replace(temp_path, self.__path)
 
     def __str__(self):
         result = "".join([s + "\r\n" for s in self.__preamble])
