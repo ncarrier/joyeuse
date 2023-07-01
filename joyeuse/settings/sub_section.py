@@ -13,6 +13,7 @@
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 
 import re
+from joyeuse.misc.compat import Compat
 
 
 class SubSection(object):
@@ -36,9 +37,9 @@ class SubSection(object):
         self.__parameters.append(parameter)
 
     def __str__(self):
-        result = f"{self.__name}\r\n"
+        result = f"{self.__name}{Compat.newline}"
 
-        result += "".join([c + "\r\n" for c in self.__comments])
+        result += "".join([c + Compat.newline for c in self.__comments])
         result += "".join([str(p) for p in self.__parameters])
 
         return result

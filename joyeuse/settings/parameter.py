@@ -12,6 +12,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 from joyeuse.ui.input_validation import InputValidation
+from joyeuse.misc.compat import Compat
 
 
 class Parameter(object):
@@ -32,9 +33,9 @@ class Parameter(object):
         self.__comments.append(comment)
 
     def __str__(self):
-        result = f"{self.__name}:{self.value} {30 * '<'}\r\n"
+        result = f"{self.__name}:{self.value} {30 * '<'}{Compat.newline}"
 
-        result += "".join([c + "\r\n" for c in self.__comments])
+        result += "".join([c + Compat.newline for c in self.__comments])
 
         return result
 

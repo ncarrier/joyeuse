@@ -13,6 +13,7 @@
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 
 import re
+from joyeuse.misc.compat import Compat
 
 
 class Section(object):
@@ -40,9 +41,9 @@ class Section(object):
         self.__comments.append(comment)
 
     def __str__(self):
-        result = f"{self.__name}\r\n"
-        result += len(self.__name) * '¨' + "\r\n"
-        result += "".join([c + "\r\n" for c in self.__comments])
+        result = f"{self.__name}{Compat.newline}"
+        result += len(self.__name) * '¨' + Compat.newline
+        result += "".join([c + Compat.newline for c in self.__comments])
         result += "".join([str(p) for p in self.__parameters])
         result += "".join([str(s) for s in self.__sub_sections])
 
@@ -64,4 +65,4 @@ class Section(object):
 
     @property
     def comments(self):
-        return "\n".join([c for c in self.__comments if len(c) > 0])
+        return Compat.newline.join([c for c in self.__comments if len(c) > 0])

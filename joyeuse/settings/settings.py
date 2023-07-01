@@ -18,6 +18,7 @@ import os
 from joyeuse.settings.section import Section
 from joyeuse.settings.sub_section import SubSection
 from joyeuse.settings.parameter import Parameter
+from joyeuse.misc.compat import Compat
 
 
 class Settings(object):
@@ -63,7 +64,12 @@ class Settings(object):
         section = None
         sub_section = None
         parameter = None
-        with open(path, "r", encoding="UTF-8", newline='\r\n') as f:
+        with open(
+            path,
+            "r",
+            encoding="UTF-8",
+            newline='\r\n'
+        ) as f:
             for line in f.readlines():
                 line = line.strip()
                 if self.__is_separation(line):
@@ -120,7 +126,7 @@ class Settings(object):
         os.replace(temp_path, self.__path)
 
     def __str__(self):
-        result = "".join([s + "\r\n" for s in self.__preamble])
+        result = "".join([s + Compat.newline for s in self.__preamble])
 
         result += "".join([str(s) for s in self.__sections])
 
