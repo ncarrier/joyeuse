@@ -34,12 +34,20 @@ jobs:
     - name: Archive artifact
       uses: actions/upload-artifact@v3
       with:
-        name: joyeuse
+        name: joyeuse-pip
         path: dist/joyeuse*.tar.gz
 
   generate-deb:
+    strategy:
+      matrix:
+        include:
+            - os: ubuntu-20.04
+              suffix: ubuntu-20.04
+            - os: ubuntu-22.04
+              suffix: ubuntu-22.04
+
     name: Generate debian package
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     steps:
     - uses: actions/checkout@v3
@@ -55,6 +63,6 @@ jobs:
     - name: Archive artifact
       uses: actions/upload-artifact@v3
       with:
-        name: joyeuse
+        name: joyeuse-${{ matrix.suffix }}
         path: joyeuse*.deb
 
