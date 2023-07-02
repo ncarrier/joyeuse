@@ -41,6 +41,7 @@ setup(
     packages=[
         'joyeuse',
         'joyeuse.cube',
+        'joyeuse.misc',
         'joyeuse.settings',
         'joyeuse.ui'
     ],
