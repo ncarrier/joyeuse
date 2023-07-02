@@ -2,7 +2,7 @@ Pour version 1.0
  * résoudre le bug du cr cr lf sous windows -> ok
  * minimiser le diff sur la config -> ok
  * aller à la ligne dans les infobulles -> ok
- * refaire le layout
+ * refaire le layout -> ok
  * mettre en place le workflow de publication de releases
  * tester avec du vrai hw
  * tester sur windows :grin:
