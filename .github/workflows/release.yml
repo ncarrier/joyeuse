@@ -37,6 +37,15 @@ jobs:
         name: joyeuse-pip
         path: dist/joyeuse*.tar.gz
 
+    - name: Upload pip artifact
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/joyeuse*.tar.gz
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
+
   generate-deb:
     strategy:
       matrix:
@@ -59,12 +68,22 @@ jobs:
       run: |
         make debian
         mv ../joyeuse*.deb .
+        tar cjf joyeuse-${{ matrix.suffix }}.tar.gz ./joyeuse*.deb
 
     - name: Archive artifact
       uses: actions/upload-artifact@v3
       with:
         name: joyeuse-${{ matrix.suffix }}
         path: joyeuse*.deb
+
+    - name: Upload deb artifact
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: joyeuse-${{ matrix.suffix }}.tar.gz
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
 
   generate-windows:
     name: Generate Windows executable
@@ -87,3 +106,13 @@ jobs:
       with:
         name: joyeuse-windows
         path: dist/joyeuse.exe
+
+    - name: Upload pip artifact
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/joyeuse*.exe
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
+
