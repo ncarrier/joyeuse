@@ -16,6 +16,7 @@ import string
 from PIL import ImageTk
 
 from joyeuse.settings.settings import Settings
+from joyeuse.misc.log import Log
 
 
 class Cube(object):
@@ -45,21 +46,20 @@ class Cube(object):
         cube = None
         for loc in Cube.__get_search_locations():
             try:
-                cube = Cube(loc, False)
-                print(f"detected joyeuse in {loc}")
+                cube = Cube(loc)
+                Log.log(f"Detected joyeuse in {loc}")
                 break
             except (AttributeError, FileNotFoundError):
                 pass
 
         return cube
 
-    def __init__(self, path, store_extra_location=True):
-        '''
-        Constructor
-        '''
+    @classmethod
+    def add_extra_location(cls, location):
+        cls.EXTRA_LOCATIONS.append(location)
+
+    def __init__(self, path):
         self.__path = path
-        if store_extra_location:
-            Cube.EXTRA_LOCATIONS.append(path)
         self.__settings = Settings(f"{path}/Secrets/SETTINGS.txt")
         self.__icon = ImageTk.PhotoImage(file=fr"{path}/joyeuse.ico")
 

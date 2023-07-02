@@ -18,12 +18,14 @@ from idlelib.tooltip import Hovertip
 import tkinter
 from joyeuse.cube.cube import Cube
 from joyeuse.ui.input_validation import InputValidation
+from joyeuse.misc.log import Log
 
 
 class MainWindow(object):
     '''
     classdocs
     '''
+    WELCOME_MESSAGE = "Branchez votre joyeuse :)"
     __period = 1  # in seconds
 
     def __init__(self):
@@ -42,6 +44,7 @@ class MainWindow(object):
         if self.__cube:
             if not self.__cube.valid:
                 self.__unload_cube()
+                self.__log_label.config(text=MainWindow.WELCOME_MESSAGE)
         else:
             cube = Cube.get_cube()
             if cube:
@@ -51,7 +54,17 @@ class MainWindow(object):
 
     def __setup_window(self):
         self.__root.title("Joyeuse")
-        self.__root.resizable(False, False)
+        self.__root.resizable(True, False)
+        self.__log_label = tkinter.Label(self.__root, anchor=tkinter.W,
+                                         text=MainWindow.WELCOME_MESSAGE)
+        self.__log_label.pack(
+            side=tkinter.BOTTOM,
+            fill=tkinter.X,
+            expand=1,
+            padx=(6, 6),
+            pady=(6, 6)
+        )
+        Log.set_log_label(self.__log_label)
 
     def __setup_notebook(self):
         self.__notebook = notebook = ttk.Notebook(self.__root)

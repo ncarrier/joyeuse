@@ -12,31 +12,16 @@
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 
-import sys
-from .ui.main_window import MainWindow
-from .cube.cube import Cube
 
+class Log(object):
+    LOG_LABEL = None
 
-def usage(status):
-    print("Usage: joyeuse [/path/to/joyeuse]")
-    sys.exit(status)
+    @classmethod
+    def set_log_label(cls, log_label):
+        cls.LOG_LABEL = log_label
 
-
-def main():
-    if len(sys.argv) not in [1, 2]:
-        usage(1)
-
-    if len(sys.argv) == 2 and sys.argv[1] in ["-h", "--help", "-?"]:
-        usage(0)
-
-    window = MainWindow()
-    cube = None
-    if len(sys.argv) == 2:
-        Cube.add_extra_location(sys.argv[1])
-    window.load_cube(cube)
-
-    window.loop()
-
-
-if __name__ == '__main__':
-    main()
+    @classmethod
+    def log(cls, message):
+        if cls.LOG_LABEL is not None:
+            cls.LOG_LABEL.config(text=message)
+        print(message)

@@ -19,6 +19,7 @@ from joyeuse.settings.section import Section
 from joyeuse.settings.sub_section import SubSection
 from joyeuse.settings.parameter import Parameter
 from joyeuse.misc.compat import Compat
+from joyeuse.misc.log import Log
 
 
 class Settings(object):
@@ -114,10 +115,11 @@ class Settings(object):
         return self.__sections
 
     def save(self):
-        print(f"Saving to {self.__path}")
+        Log.log(f"Saving to {self.__path}")
         temp_path = f"{self.__path}~"
         with open(temp_path, "w", encoding="UTF-8") as f:
             f.write(str(self))
+        Log.log(f"Saved to {self.__path}")
 
         os.replace(temp_path, self.__path)
 
