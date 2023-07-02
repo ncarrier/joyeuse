@@ -3,11 +3,11 @@ Pour version 1.0
  * minimiser le diff sur la config -> ok
  * aller à la ligne dans les infobulles -> ok
  * refaire le layout -> ok
- * mettre en place le workflow de publication de releases
+ * mettre en place le workflow de publication de releases -> ok
+ * afficher un message quand la conteuse n'est pas détectée -> ok
+ * ajouter une zone de log en bas de la fenêtre -> ok
  * bug écriture si spinbox vide
  * limiter fréquence d'écriture à cause des perfs du mass storage
- * afficher un message quand la conteuse n'est pas détectée
- * ajouter une zone de log en bas de la fenêtre
  * tester avec du vrai hw
  * tester sur windows :grin:
 
