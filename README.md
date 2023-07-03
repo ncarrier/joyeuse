@@ -24,13 +24,13 @@ wget https://github.com/ncarrier/joyeuse/releases/latest/download/joyeuse-ubuntu
 L'extraire :
 
 ```sh
-tar xf ubuntu-22.04.tar.gz
+tar xf joyeuse-ubuntu-22.04.tar.gz
 ```
 
 L'installer :
 
 ```sh
-sudo apt install ubuntu-22.04/joyeuse-*.deb
+sudo apt install ./joyeuse_*.deb
 ```
 
 Une version pour Ubuntu 20.04 est également disponible, remplacer dans les
@@ -110,13 +110,13 @@ wget https://github.com/ncarrier/joyeuse/releases/latest/download/joyeuse-ubuntu
 Extract it:
 
 ```sh
-tar xf ubuntu-22.04.tar.gz
+tar xf joyeuse-ubuntu-22.04.tar.gz
 ```
 
 Install it:
 
 ```sh
-sudo apt install ubuntu-22.04/joyeuse-*.deb
+sudo apt install ./joyeuse_*.deb
 ```
 
 An Ubuntu 20.04 version is availe too, remplace 22 with 20 in the instructions
