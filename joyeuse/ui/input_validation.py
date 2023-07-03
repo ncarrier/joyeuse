@@ -40,13 +40,24 @@ class IntInRangeSetting(Setting):
 
     def get_input_widget(self, parent, var, edit_action):
         var.trace("w", edit_action)
-        return ttk.Spinbox(
+        sb = ttk.Spinbox(
             parent,
             from_=self.lower,
             to=self.upper,
             textvariable=var,
             width=3
         )
+        vcmd = (parent.register(self.validate_spinbox), '%P')
+        sb.configure(validate="key", validatecommand=vcmd)
+
+        return sb
+
+    def validate_spinbox(self, new_value):
+        try:
+            v = int(new_value)
+            return v >= self.__lower and v <= self.__upper
+        except ValueError:
+            return False
 
     @property
     def lower(self):
@@ -79,6 +90,8 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
                 textvariable=self.__int_var,
                 width=3
             )
+            vcmd = (parent.register(setting.validate_spinbox), '%P')
+            self.__spin_box.configure(validate="key", validatecommand=vcmd)
             self.__spin_box.pack(side="right", fill="both")
 
             self.__boolean_var = BooleanVar(value=checked)
