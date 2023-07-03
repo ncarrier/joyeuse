@@ -13,6 +13,7 @@
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 import os
 from enum import Enum, auto
+import string
 
 
 class Os(Enum):
@@ -23,3 +24,16 @@ class Os(Enum):
 class Compat(object):
     OS = Os.WINDOWS if os.name == "nt" else Os.LINUX
     newline = '\r\n' if OS == Os.LINUX else '\n'
+
+    @staticmethod
+    def __get_subdirs(a_dir):
+        full_paths = [os.path.join(a_dir, name) for name in os.listdir(a_dir)]
+        return [path for path in full_paths if os.path.isdir(path)]
+
+    @staticmethod
+    def get_os_mount_search_path():
+        if Compat.OS == Os.LINUX:
+            return Compat.__get_subdirs(f"/media/{os.getlogin()}")
+        else:
+            return [f"{d}:" for d in string.ascii_uppercase
+                    if os.path.exists(f"{d}:")]

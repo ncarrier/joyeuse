@@ -12,11 +12,11 @@
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 import os
-import string
 from PIL import ImageTk
 
 from joyeuse.settings.settings import Settings
 from joyeuse.misc.log import Log
+from joyeuse.misc.compat import Compat
 
 
 class Cube(object):
@@ -26,19 +26,12 @@ class Cube(object):
     EXTRA_LOCATIONS = []
 
     @staticmethod
-    def __get_subdirs(a_dir):
-        full_paths = [os.path.join(a_dir, name) for name in os.listdir(a_dir)]
-        return [path for path in full_paths if os.path.isdir(path)]
-
-    @staticmethod
     def __get_search_locations():
         return (
             # passed by parameter
             Cube.EXTRA_LOCATIONS +
-            # linux
-            Cube.__get_subdirs(f"/media/{os.getlogin()}") +
-            # windows
-            [f"{d}" for d in string.ascii_uppercase if os.path.exists(f"{d}:")]
+            # os specific
+            Compat.get_os_mount_search_path()
         )
 
     @staticmethod
