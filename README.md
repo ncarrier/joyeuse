@@ -5,39 +5,68 @@
 Cet outil permet de modifier les paramètres de la conteuse Joyeuse
 (fichier **Secrets/SETTINGS.txt**).
 
-Son état actuel est très basique et il manque encore cruellement de
-fonctionnalités.
+## Installation
+
+### Windows
+
+Télécharger la [dernière version pour Windows][windows].
+
+### Linux
+
+### Ubuntu
+
+Télécharger la dernière version pour Ubuntu 22.04 :
+
+```sh
+wget https://github.com/ncarrier/joyeuse/releases/latest/download/joyeuse-ubuntu-22.04.tar.gz
+```
+
+L'extraire :
+
+```sh
+tar xf ubuntu-22.04.tar.gz
+```
+
+L'installer :
+
+```sh
+sudo apt install ubuntu-22.04/joyeuse-*.deb
+```
+
+Une version pour Ubuntu 20.04 est également disponible, remplacer dans les
+instructions précédentes, 22 par 20.
+
+## Tous systèmes Windows ou Linux
+
+Pour les utilisateurs ayant python installé, avec pip :
+
+```sh
+pip install joyeuse
+```
 
 ## Utilisation
 
-Brancher la conteuse, puis :
+Lancer l'application en double-cliquant sur le fichier .exe sous Windows, ou en
+entrant la commande :
 
 ```sh
-python3 -m joyeuse /chemin/vers/la/conteuse
+joyeuse
 ```
 
-Il est possible de tester son fonctionnement en utilisant le dossier
-**example/copie** au lieu du chemin vers la conteuse.
+sous Linux.
 
-## Générer un package pip
-
-```sh
-make pip
-```
-
-Le package généré se trouve dans **dist/**.
-
-## Générer un package debian
-
-```sh
-make debian
-```
-
-Le package généré se trouve dans le répertoire parent.
+Puis brancher la conteuse, qui affichera les paramètres de configuration de la
+conteuse.
 
 ## Compatibilité
 
-Pour l'instant, le logiciel n'a été testé que sous Linux (Debian 10).
+Pour l'instant, le logiciel a été testé sous :
+
+ * Windows
+     * version 10
+ * Linux
+     * Debian 10 et 11 (via pip)
+     * Ubuntu 20.04 et 22.04
 
 ## License
 
@@ -47,6 +76,7 @@ version future.
 Les personnes qui envoient des contributions, sous quelque forme que ce soit,
 patch, pull request, conseil... Acceptent en le faisant, que leur propriété me
 soit transférée à moi, **Nicolas Carrier**.
+Ceci au moyen de l'ajout d'un sign-off aux commits.
 
 ## Autres
 
@@ -54,45 +84,74 @@ soit transférée à moi, **Nicolas Carrier**.
 conteuse.
 
 Pour plus d'information sur Joyeuse, rendez vous sur son
-[site web](https://www.joyeuse.io/).
+[site web][joyeuse].
 
 # en - Joyeuse configuration tool
 
 This tool is meant to configure the parameters of the Joyeuse
 (**Secrets/SETTINGS.txt**).
 
-Its current state is very basic and it's still severely lacking features.
+## Installation
 
-## Usage
+### Windows
 
-Plug the Joyeuse, then:
+Download [the latest Windows version][windows].
 
-```sh
-python3 -m joyeuse /path/to/the/joyeuse
-```
+### Linux
 
-It is possible to test how it works by using the **example/copie** instead of
-the path to the joyeuse.
+### Ubuntu
 
-## Generate a pip package
+Download the latest Ubuntu 22.04 version:
 
 ```sh
-make pip
+wget https://github.com/ncarrier/joyeuse/releases/latest/download/joyeuse-ubuntu-22.04.tar.gz
 ```
 
-The resulting package will be in **dist/**.
-
-## Generate a debian package
+Extract it:
 
 ```sh
-make debian
+tar xf ubuntu-22.04.tar.gz
 ```
 
-The generated packages is in the parent folder.
+Install it:
+
+```sh
+sudo apt install ubuntu-22.04/joyeuse-*.deb
+```
+
+An Ubuntu 20.04 version is availe too, remplace 22 with 20 in the instructions
+above.
+
+## All Windows or Linux systems
+
+For the users having python installed, with pip :
+
+```sh
+pip install joyeuse
+```
+
+## Utilisation
+
+Launch the application with a double-click on the .exe, for Windows, or by
+running:
+
+```sh
+joyeuse
+```
+
+under Linux.
+
+Then plug the Joyeuse in, which will make its configuration parameters appear.
 
 ## Compatibility
 
-For now, this software was only tested on Linux (Debian 10).
+For now, the software has been tested for:
+
+ * Windows
+     * version 10
+ * Linux
+     * Debian 10 and 11 (via pip)
+     * Ubuntu 20.04 and 22.04
 
 ## License
 
@@ -107,24 +166,25 @@ Accept by doing so, that their ownership gets transferred to me,
 **Note**: I am not related with the JOYEUSE company which builds the Joyeuse
 storyteller.
 
-For more information on Joyeuse, go to its [web site](https://www.joyeuse.io/).
+For more information on Joyeuse, go to its [web site][joyeuse].
 
-## TODO
+## What's next
 
-Here is my tentative TODO list, sorted by order of priorities (most priority
-first):
+Here is my tentative roadmap:
 
- * Windows packaging
- * Input parameters validation
- * Auto-detect of the device
- * Publication of 1.0.0
- * Implement a Tutorial tab, allowing to play the videos inside the
+ * Version 1.0.0
+     * Support of parameters control
+ * Version 1.1.0
+     * Implement a Tutorial tab, allowing to play the videos inside the
    'Tutos vidéo' folder
- * Implement the Sound library, allowing to manage the sounds which can be
-   uploaded to the Joyeuse
- * Implement the Music / Stories tab, allowing to add / remove sounds to the
-   cube faces
- * Internationalization
- * Implement a studio tab, allowing to record sound files
+     * Internationalization
+ * Version 1.2.0
+     * Implement the Sound library, allowing to manage the sounds which can be
+     uploaded to the Joyeuse
+     * Implement the Music / Stories tab, allowing to add / remove sounds to the
+     cube faces
+ * Version 1.3.0
+     * Implement a studio tab, allowing to record sound files
 
- * man page? cli? completion?
+[joyeuse]: https://www.joyeuse.io/
+[windows]: https://github.com/ncarrier/joyeuse/releases/latest/download/joyeuse.exe
