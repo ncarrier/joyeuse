@@ -1,3 +1,11 @@
+joyeuse (1.0.0) UNRELEASED; urgency=medium
+
+  * full support of SETTINGS.txt
+  * input validation
+  * detection of insertion / removal of the joyeuse
+
+ -- Nicolas Carrier <carrier.nicolas0@gmail.com>  Mon, 03 Jul 2023 21:50:10 +0200
+
 joyeuse (0.1.0) UNRELEASED; urgency=medium
 
   * local package

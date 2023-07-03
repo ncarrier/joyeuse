@@ -15,7 +15,7 @@
 __title__ = "joyeuse"
 __description__ = "Configuration tool for the joyeuse storyteller"
 __url__ = "https://github.com/ncarrier/joyeuse"
-__version__ = "0.1.0"
+__version__ = "1.0.0"
 __author__ = "Nicolas Carrier"
 __author_email__ = "carrier.nicolas0@gmail.com"
 __license__ = "GPLv3+"
