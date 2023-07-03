@@ -1,4 +1,4 @@
-![windows executable generation](https://github.com/ncarrier/joyeuse/actions/workflows/windows_build.yml/badge.svg?branch=master)
+![continuous integration](https://github.com/ncarrier/joyeuse/actions/workflows/continuous_integration.yml/badge.svg?branch=master)
 
 # fr - Outil de configuration de la conteuse Joyeuse
 
