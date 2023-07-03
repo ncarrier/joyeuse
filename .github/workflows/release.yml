@@ -101,13 +101,14 @@ jobs:
         pip install . -r requirements.txt
     - name: Build joyeuse.exe
       run: bash .github/scripts/build-win.sh
+
     - name: Archive artifact
       uses: actions/upload-artifact@v3
       with:
         name: joyeuse-windows
         path: dist/joyeuse.exe
 
-    - name: Upload pip artifact
+    - name: Upload exe artifact
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
