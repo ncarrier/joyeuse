@@ -26,13 +26,14 @@ class MainWindow(object):
     classdocs
     '''
     WELCOME_MESSAGE = "Branchez votre joyeuse :)"
-    __period = 1  # in seconds
+    __period = 1  # in seconds, used by joyeuse detector and save debouncer
 
     def __init__(self):
         '''
         Constructor
         '''
         self.__cube = None
+        self.__after_identifier = None
         self.__root = Tk(className='joyeuse')
         self.__setup_window()
 
@@ -110,6 +111,17 @@ class MainWindow(object):
         return validation_obj.get_input_widget(frame, parameter.var,
                                                edit_action)
 
+    def __do_save(self):
+        self.__cube.settings.save()
+        self.__after_identifier = None
+
+    def __save_scheduler(self):
+        if self.__after_identifier is not None:
+            self.__root.after_cancel(self.__after_identifier)
+
+        self.__after_identifier = self.__root.after(1000 * self.__period,
+                                                    self.__do_save)
+
     def __load_parameter(self, frame, parameter, index):
         label = tkinter.Label(frame, text=parameter.name)
         label.grid(
@@ -122,7 +134,7 @@ class MainWindow(object):
         widget = self.__get_input_widget(
             frame,
             parameter,
-            lambda a, b, c: self.__cube.settings.save()
+            lambda a, b, c: self.__save_scheduler()
         )
         widget.grid(column=1, row=index, sticky=tkinter.E, pady=3, padx=3)
         if len(parameter.comments) > 0:
