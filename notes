@@ -9,11 +9,13 @@ Pour version 1.0
  * bug écriture si spinbox vide -> ok
  * limiter fréquence d'écriture à cause des perfs du mass storage -> ok
  * validation inputs rentrées au clavier (qui peuvent être hors range) -> ok
- * tester avec du vrai hw
- * tester sur windows :grin:
+ * tester avec du vrai hw ->ok
+ * tester sur windows :grin: -> ok
+ * détection des conteuses présentes ? -> ok
 
-détection des conteuses présentes ? -> ok
-
+man page
+completion
+cli
 
 Onglets :
   * tutoriels
