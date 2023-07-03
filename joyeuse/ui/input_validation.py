@@ -11,7 +11,7 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
-from tkinter import IntVar, StringVar, BooleanVar, ttk, Frame
+from tkinter import IntVar, StringVar, BooleanVar, ttk, Frame, TclError
 
 
 class Setting(object):
@@ -33,7 +33,10 @@ class IntInRangeSetting(Setting):
         self.__upper = upper
 
     def get_value(self, var):
-        return str(var.get())
+        try:
+            return str(var.get())
+        except TclError:
+            return self.__lower
 
     def get_input_widget(self, parent, var, edit_action):
         var.trace("w", edit_action)
@@ -63,6 +66,7 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
     class __SpinboxWithCheckButton(Frame):
         def __init__(self, parent, setting, var, edit_action):
             Frame.__init__(self, parent)
+            self.__lower = setting.lower
             checked = var.get() != "N"
             int_value = int(var.get()) if checked else setting.lower
 
@@ -95,7 +99,10 @@ class FalseOrIntInRangeSetting(IntInRangeSetting):
 
         @property
         def value(self):
-            return self.__int_var.get()
+            try:
+                return self.__int_var.get()
+            except TclError:
+                return self.__lower
 
     def get_value(self, _):
         return "N" if self.__widget.checked else str(self.__widget.value)
