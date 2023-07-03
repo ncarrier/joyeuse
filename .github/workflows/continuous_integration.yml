@@ -1,0 +1,91 @@
+name: Continuous integration
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  generate-pip:
+    name: Generate pip archive
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.11'
+
+    - name: Install package dependencies
+      uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: make
+        version: 1.0
+
+    - name: Install python dependencies
+      run: |
+        python -m pip install --upgrade pip
+
+    - name: Build joyeuse-x.x.x.tar.gz
+      run: make pip
+
+    - name: Archive artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: joyeuse-pip
+        path: dist/joyeuse*.tar.gz
+
+  generate-deb:
+    strategy:
+      matrix:
+        include:
+            - os: ubuntu-20.04
+              suffix: ubuntu-20.04
+            - os: ubuntu-22.04
+              suffix: ubuntu-22.04
+
+    name: Generate debian package
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install package dependencies
+      run: sudo apt install -y devscripts debhelper dh-python python3 python3-setuptools python3-tk
+
+    - name: Build joyeuse-x.x.x.deb
+      run: |
+        make debian
+        mv ../joyeuse*.deb .
+        tar cjf joyeuse-${{ matrix.suffix }}.tar.gz ./joyeuse*.deb
+
+    - name: Archive artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: joyeuse-${{ matrix.suffix }}
+        path: joyeuse*.deb
+
+  generate-windows:
+    name: Generate Windows executable
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.11'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install . -r requirements.txt
+    - name: Build joyeuse.exe
+      run: bash .github/scripts/build-win.sh
+
+    - name: Archive artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: joyeuse-windows
+        path: dist/joyeuse.exe
+
