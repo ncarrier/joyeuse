@@ -6,8 +6,9 @@ Pour version 1.0
  * mettre en place le workflow de publication de releases -> ok
  * afficher un message quand la conteuse n'est pas détectée -> ok
  * ajouter une zone de log en bas de la fenêtre -> ok
- * bug écriture si spinbox vide
- * limiter fréquence d'écriture à cause des perfs du mass storage
+ * bug écriture si spinbox vide -> ok
+ * limiter fréquence d'écriture à cause des perfs du mass storage -> ok
+ * validation inputs rentrées au clavier (qui peuvent être hors range) -> ok
  * tester avec du vrai hw
  * tester sur windows :grin:
 
