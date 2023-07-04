@@ -1,2 +1,4 @@
 pyinstaller==5.13.0
 pillow==9.5.0
+gobject
+PyGObject
