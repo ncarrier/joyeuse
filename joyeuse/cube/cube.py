@@ -17,6 +17,7 @@ from PIL import ImageTk
 from joyeuse.settings.settings import Settings
 from joyeuse.misc.log import Log
 from joyeuse.misc.compat import Compat
+import glob
 
 
 class Cube(object):
@@ -63,6 +64,10 @@ class Cube(object):
     @property
     def settings(self):
         return self.__settings
+
+    @property
+    def tutorials(self):
+        return glob.glob(f"{self.__path}/Secrets/Tutos vidéo/*.mp4")
 
     @property
     def icon(self):

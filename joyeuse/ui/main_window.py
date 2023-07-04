@@ -18,6 +18,7 @@ import tkinter
 from joyeuse.cube.cube import Cube
 from joyeuse.misc.log import Log
 from joyeuse.ui.settings_tab import SettingsTab
+from joyeuse.ui.tutorials_tab import TutorialsTab
 
 
 class MainWindow(object):
@@ -79,6 +80,11 @@ class MainWindow(object):
         self.__setup_tabs(notebook)
 
     def __setup_tabs(self, notebook):
+        self.__tutorials = tutorials = TutorialsTab(notebook)
+        tutorials.pack(fill=tkinter.BOTH, expand=True)
+        tutorials.columnconfigure(0, weight=1)
+        notebook.add(tutorials, text='Tutoriels')
+
         self.__settings = settings = SettingsTab(
             notebook,
             lambda a, b, c: self.__save_scheduler()
@@ -105,6 +111,7 @@ class MainWindow(object):
             self.__cube = cube
             self.__setup_notebook()
             self.__settings.load_cube_settings(cube.settings)
+            self.__tutorials.load_cube_tutorials(cube.tutorials)
             self.__root.iconphoto(True, cube.icon)
         self.__joyeuse_detector()
 
