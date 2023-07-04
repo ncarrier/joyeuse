@@ -14,11 +14,10 @@
 
 from tkinter import Tk
 from tkinter import ttk
-from idlelib.tooltip import Hovertip
 import tkinter
 from joyeuse.cube.cube import Cube
-from joyeuse.ui.input_validation import InputValidation
 from joyeuse.misc.log import Log
+from joyeuse.ui.settings_tab import SettingsTab
 
 
 class MainWindow(object):
@@ -80,36 +79,15 @@ class MainWindow(object):
         self.__setup_tabs(notebook)
 
     def __setup_tabs(self, notebook):
-        self.__settings = settings = tkinter.Frame(notebook)
-        self.__settings.pack(
-            fill=tkinter.BOTH,
-            expand=True
+        self.__settings = settings = SettingsTab(
+            notebook,
+            lambda a, b, c: self.__save_scheduler()
         )
-        self.__settings.columnconfigure(0, weight=1)
+        settings.pack(fill=tkinter.BOTH, expand=True)
+        settings.columnconfigure(0, weight=1)
         notebook.add(settings, text='Paramètres')
 
         notebook.pack(expand=1, fill="both")
-
-    def __load_cube_sub_section(self, frame, sub_section, index):
-        sub_frame = tkinter.LabelFrame(frame, text=sub_section.name)
-        sub_frame.grid(row=index, column=0, sticky=tkinter.EW,
-                       padx=(6, 6), pady=(6, 6))
-        sub_frame.columnconfigure(0, weight=1)
-        sub_frame.columnconfigure(1, weight=1)
-        if len(sub_section.comments) > 0:
-            Hovertip(sub_frame, sub_section.comments)
-
-        # load the parameters
-        p_index = 0
-        for p in sub_section.parameters:
-            self.__load_parameter(sub_frame, p, p_index)
-            p_index += 1
-
-    def __get_input_widget(self, frame, parameter, edit_action):
-        validation_obj = InputValidation.get(parameter.name)
-
-        return validation_obj.get_input_widget(frame, parameter.var,
-                                               edit_action)
 
     def __do_save(self):
         self.__cube.settings.save()
@@ -122,61 +100,11 @@ class MainWindow(object):
         self.__after_identifier = self.__root.after(1000 * self.__period,
                                                     self.__do_save)
 
-    def __load_parameter(self, frame, parameter, index):
-        label = tkinter.Label(frame, text=parameter.name)
-        label.grid(
-            column=0,
-            row=index,
-            sticky=tkinter.W,
-            padx=(3, 3),
-            pady=(3, 3)
-        )
-        widget = self.__get_input_widget(
-            frame,
-            parameter,
-            lambda a, b, c: self.__save_scheduler()
-        )
-        widget.grid(column=1, row=index, sticky=tkinter.E, pady=3, padx=3)
-        if len(parameter.comments) > 0:
-            Hovertip(label, parameter.comments)
-            Hovertip(widget, parameter.comments)
-
-    def __load_cube_section(self, section, index):
-        frame = tkinter.LabelFrame(self.__settings, text=section.name)
-        frame.grid(
-            row=index,
-            column=0,
-            sticky=tkinter.EW,
-            padx=(6, 6),
-            pady=(6, 6)
-        )
-        frame.columnconfigure(0, weight=1)
-        if len(section.comments) > 0:
-            Hovertip(frame, section.comments)
-
-        # load the sub-sections
-        ss_index = 0
-        for ss in section.sub_sections:
-            self.__load_cube_sub_section(frame, ss, ss_index)
-            ss_index += 1
-
-        # load the parameters
-        p_index = ss_index
-        for p in section.parameters:
-            self.__load_parameter(frame, p, p_index)
-            p_index += 1
-
-    def __load_cube_settings(self, settings):
-        index = 0
-        for s in settings.sections:
-            self.__load_cube_section(s, index)
-            index = index + 1
-
     def load_cube(self, cube):
         if cube is not None:
             self.__cube = cube
             self.__setup_notebook()
-            self.__load_cube_settings(cube.settings)
+            self.__settings.load_cube_settings(cube.settings)
             self.__root.iconphoto(True, cube.icon)
         self.__joyeuse_detector()
 
