@@ -54,7 +54,7 @@ class TutorialsTab(Frame):
     def __get_video_handler(self, name):
         def video_handler():
             self.__stop_video()
-            self.__gst.set_property("uri", f"file://{name}")
+            self.__gst.set_property("uri", f"file:///{name}")
             self.__gst.set_state(Gst.State.PLAYING)
 
             bus = self.__gst.get_bus()
