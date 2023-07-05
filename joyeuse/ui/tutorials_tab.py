@@ -16,10 +16,10 @@ from tkinter import Frame, Button, EW, NSEW
 
 import gi
 gi.require_version('Gst', '1.0')
-from gi.repository import Gst, GObject
+from gi.repository import Gst, GObject  # noqa E402
 
 gi.require_version('GstVideo', '1.0')
-from gi.repository import GstVideo
+from gi.repository import GstVideo  # noqa E402,F401
 
 
 class TutorialsTab(Frame):
@@ -40,7 +40,6 @@ class TutorialsTab(Frame):
         )
         self.__frame_id = self.__player.winfo_id()
 
-
     def on_eos(self, bus, message):
         print("here")  # TODO doesn't work, never called
 
@@ -60,7 +59,6 @@ class TutorialsTab(Frame):
 
             bus = self.__gst.get_bus()
             bus.enable_sync_message_emission()
-            #bus.add_signal_watch()
             bus.connect(
                 'sync-message::element',
                 TutorialsTab.set_frame_handle,
