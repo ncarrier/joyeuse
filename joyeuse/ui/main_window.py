@@ -25,7 +25,7 @@ class MainWindow(object):
     '''
     classdocs
     '''
-    WELCOME_MESSAGE = "Branchez votre joyeuse :)"
+    WELCOME_MESSAGE = "Plug in your joyeuse :)"
     __period = 1  # in seconds, used by joyeuse detector and save debouncer
 
     def __init__(self):
@@ -46,7 +46,7 @@ class MainWindow(object):
             if not self.__cube.valid:
                 self.__root.minsize(0, 0)
                 self.__unload_cube()
-                self.__log_label.config(text=MainWindow.WELCOME_MESSAGE)
+                self.__log_label.config(text=_(MainWindow.WELCOME_MESSAGE))
                 # reset geometry, if it was change by hand
                 self.__root.geometry("")
                 self.__root.resizable(False, False)
@@ -68,7 +68,7 @@ class MainWindow(object):
         self.__root.resizable(False, False)
 
         self.__log_label = tkinter.Label(self.__root, anchor=tkinter.W,
-                                         text=MainWindow.WELCOME_MESSAGE)
+                                         text=_(MainWindow.WELCOME_MESSAGE))
         self.__log_label.pack(
             side=tkinter.BOTTOM,
             fill=tkinter.X,
@@ -106,7 +106,7 @@ class MainWindow(object):
         self.__tutorials = tutorials = TutorialsTab(notebook)
         tutorials.pack(fill=tkinter.BOTH, expand=True)
         tutorials.columnconfigure(0, weight=1)
-        notebook.add(tutorials, text='Tutoriels')
+        notebook.add(tutorials, text=_("Tutorials"))
 
         self.__settings = settings = SettingsTab(
             notebook,
@@ -114,7 +114,7 @@ class MainWindow(object):
         )
         settings.pack(fill=tkinter.BOTH, expand=True)
         settings.columnconfigure(0, weight=1)
-        notebook.add(settings, text='Paramètres')
+        notebook.add(settings, text=_("Parameters"))
 
         notebook.pack(expand=1, fill="both")
 

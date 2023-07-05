@@ -85,7 +85,7 @@ class TutorialsTab(Frame):
                 pady=(3, 3)
             )
             idx += 1
-        b = Button(self, text="▣ Stop", command=self.__stop_video)
+        b = Button(self, text=f"▣ {_('Stop')}", command=self.__stop_video)
         b.grid(
             column=0,
             row=idx,
