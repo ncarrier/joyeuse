@@ -1,6 +1,6 @@
 https://lokalise.com/blog/beginners-guide-to-python-i18n/
 
-xgettext -d base -o locales/joyeuse.pot i18n.py
+xgettext -d base -o joyeuse/i18n/locales/joyeuse.pot $(find joyeuse -name '*.py')
 
-msgfmt -o locales/fr/LC_MESSAGES/joyeuse.{m,p}o
+find joyeuse/i18n/ -name '*.po' | while read p; do  msgfmt -o ${p//po/mo} ${p}; done
 
