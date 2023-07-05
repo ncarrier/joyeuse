@@ -12,8 +12,7 @@
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 
-from tkinter import Tk
-from tkinter import ttk
+from tkinter import Tk, ttk, font
 import tkinter
 from joyeuse.cube.cube import Cube
 from joyeuse.misc.log import Log
@@ -66,6 +65,9 @@ class MainWindow(object):
             padx=(6, 6),
             pady=(6, 6)
         )
+        ft = font.nametofont(self.__log_label["font"]).actual()
+        ft = (ft["family"], ft["size"] - 2, "italic")
+        self.__log_label.config(font=ft)
         Log.set_log_label(self.__log_label)
 
     def __setup_notebook(self):
