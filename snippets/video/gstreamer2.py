@@ -5,11 +5,12 @@ import tkinter
 
 import gi
 gi.require_version('Gst', '1.0')
-from gi.repository import Gst, GObject
+from gi.repository import Gst, GObject  # noqa E402
 
 # Needed for set_window_handle():
 gi.require_version('GstVideo', '1.0')
-from gi.repository import GstVideo
+from gi.repository import GstVideo  # noqa E402,F401
+
 
 def set_frame_handle(bus, message, frame_id):
     if not message.get_structure() is None:
@@ -17,6 +18,7 @@ def set_frame_handle(bus, message, frame_id):
             display_frame = message.src
             display_frame.set_property('force-aspect-ratio', True)
             display_frame.set_window_handle(frame_id)
+
 
 window = tkinter.Tk()
 window.title("Multiple videos in a column using Tk and GST 1.0")
@@ -26,8 +28,7 @@ Gst.init(None)
 GObject.threads_init()
 
 display_frame = tkinter.Frame(window, bg='')
-display_frame.place(relx = 0, rely = 0,
-        anchor = tkinter.NW, relwidth = 1, relheight = 1)
+display_frame.place(relx=0, rely=0, anchor=tkinter.NW, relwidth=1, relheight=1)
 frame_id = display_frame.winfo_id()
 
 player = Gst.ElementFactory.make('playbin', None)
