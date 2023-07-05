@@ -1,0 +1,26 @@
+# Translation for the Joyeuse application
+# Copyright (C) 2023 Nicolas Carrier
+# This file is distributed under the same license as the Joyeuse package.
+# Nicolas Carrier <carrier.nicolas0@gmail.com, 2023
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-07-04 22:19+0200\n"
+"PO-Revision-Date:  2023-07-04 22:19+0200\n"
+"Last-Translator: Nicolas Carrier <carrier.nicolas0@gmail.com\n"
+"Language-Team: Nicolas Carrier <carrier.nicolas0@gmail.com\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: joyeuse/__main__.py:22
+msgid "Usage: joyeuse [/path/to/joyeuse]"
+msgstr "Utilisation : joyeuse [/path/to/joyeuse]"
+
+#: joyeuse/cube/cube.py:45
+msgid "Detected joyeuse in "
+msgstr "Joyeuse détectée dans "
