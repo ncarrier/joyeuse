@@ -31,7 +31,7 @@ msgstr "Paramètres"
 
 #: joyeuse/__main__.py:22
 msgid "Usage: joyeuse [/path/to/joyeuse]"
-msgstr "Utilisation : joyeuse [/path/to/joyeuse]"
+msgstr "Utilisation : joyeuse [/chemin/vers/la/joyeuse]"
 
 #: joyeuse/cube/cube.py:47
 msgid "Detected joyeuse in "
