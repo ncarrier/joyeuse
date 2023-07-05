@@ -25,7 +25,6 @@ class MainWindow(object):
     '''
     classdocs
     '''
-    WELCOME_MESSAGE = "Plug in your joyeuse :)"
     __period = 1  # in seconds, used by joyeuse detector and save debouncer
 
     def __init__(self):
@@ -35,6 +34,7 @@ class MainWindow(object):
         self.__cube = None
         self.__after_identifier = None
         self.__root = Tk(className=appname)
+        self.__welcome_message = _("Plug in your Joyeuse :)")
         self.__setup_window()
 
     def __unload_cube(self):
@@ -46,7 +46,7 @@ class MainWindow(object):
             if not self.__cube.valid:
                 self.__root.minsize(0, 0)
                 self.__unload_cube()
-                self.__log_label.config(text=_(MainWindow.WELCOME_MESSAGE))
+                self.__log_label.config(text=self.__welcome_message)
                 # reset geometry, if it was change by hand
                 self.__root.geometry("")
                 self.__root.resizable(False, False)
@@ -68,7 +68,7 @@ class MainWindow(object):
         self.__root.resizable(False, False)
 
         self.__log_label = tkinter.Label(self.__root, anchor=tkinter.W,
-                                         text=_(MainWindow.WELCOME_MESSAGE))
+                                         text=self.__welcome_message)
         self.__log_label.pack(
             side=tkinter.BOTTOM,
             fill=tkinter.X,
