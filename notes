@@ -52,3 +52,5 @@ apt update
 apt install wine winetricks xvfb git make python3 python3-tk devscripts expect wget wine32
 
 https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idcontainer
+
+Le format Joyeuse : mono, 64 kbs, 16 khz, constant bitrate. Les titres ne doivent pas dépasser 35 caractères. A défaut ils ne seront pas joués.
