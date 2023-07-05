@@ -12,12 +12,13 @@
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
 import os
+import glob
 from PIL import ImageTk
 
 from joyeuse.settings.settings import Settings
 from joyeuse.misc.log import Log
 from joyeuse.misc.compat import Compat
-import glob
+from joyeuse.cube.info import Info
 
 
 class Cube(object):
@@ -56,6 +57,7 @@ class Cube(object):
         self.__path = path
         self.__settings = Settings(f"{path}/Secrets/SETTINGS.txt")
         self.__icon = ImageTk.PhotoImage(file=fr"{path}/joyeuse.ico")
+        self.__info = Info(f"{path}/Secrets/info.js")
 
     @property
     def valid(self):
