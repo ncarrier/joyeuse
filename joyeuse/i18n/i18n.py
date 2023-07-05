@@ -18,7 +18,7 @@ import gettext
 class I18n(object):
     @staticmethod
     def init(languages=[]):
-        localedir = "./locales"
+        localedir = "./joyeuse/i18n/locales"
         en_i18n = gettext.translation(appname, localedir, fallback=True,
                                       languages=languages)
         en_i18n.install()
