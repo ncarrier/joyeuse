@@ -19,6 +19,7 @@ from joyeuse.settings.settings import Settings
 from joyeuse.misc.log import Log
 from joyeuse.misc.compat import Compat
 from joyeuse.cube.info import Info
+from joyeuse.i18n.i18n import I18n
 
 
 class Cube(object):
@@ -42,6 +43,7 @@ class Cube(object):
         for loc in Cube.__get_search_locations():
             try:
                 cube = Cube(loc)
+                I18n.init([cube.info.locale])
                 Log.log(_("Detected joyeuse in ") + loc)
                 break
             except (AttributeError, FileNotFoundError):
@@ -75,3 +77,7 @@ class Cube(object):
     @property
     def icon(self):
         return self.__icon
+
+    @property
+    def info(self):
+        return self.__info
