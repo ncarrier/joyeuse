@@ -42,7 +42,7 @@ class Cube(object):
         for loc in Cube.__get_search_locations():
             try:
                 cube = Cube(loc)
-                Log.log(f"Detected joyeuse in {loc}")
+                Log.log(_("Detected joyeuse in ") + loc)
                 break
             except (AttributeError, FileNotFoundError):
                 pass
