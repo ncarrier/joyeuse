@@ -54,6 +54,7 @@ class Cube(object):
         cls.EXTRA_LOCATIONS.append(location)
 
     def __init__(self, path):
+        path = os.path.realpath(path)
         self.__path = path
         self.__settings = Settings(f"{path}/Secrets/SETTINGS.txt")
         self.__icon = ImageTk.PhotoImage(file=fr"{path}/joyeuse.ico")
