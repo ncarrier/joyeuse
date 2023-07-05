@@ -44,18 +44,30 @@ class MainWindow(object):
     def __joyeuse_detector(self):
         if self.__cube:
             if not self.__cube.valid:
+                self.__root.minsize(0, 0)
                 self.__unload_cube()
                 self.__log_label.config(text=MainWindow.WELCOME_MESSAGE)
+                # reset geometry, if it was change by hand
+                self.__root.geometry("")
+                self.__root.resizable(False, False)
         else:
             cube = Cube.get_cube()
             if cube:
                 self.load_cube(cube)
 
+                # restrict min size to what's necessary to display all
+                self.__root.update()
+                self.__root.minsize(self.__root.winfo_width(),
+                                    self.__root.winfo_height())
+                # TODO could be True, True if at least, the log label wouldn't
+                # stretch vertically
+                self.__root.resizable(True, False)
+
         self.__root.after(1000 * self.__period, self.__joyeuse_detector)
 
     def __setup_window(self):
         self.__root.title(appname.capitalize())
-        self.__root.resizable(True, False)
+        self.__root.resizable(False, False)
         self.__log_label = tkinter.Label(self.__root, anchor=tkinter.W,
                                          text=MainWindow.WELCOME_MESSAGE)
         self.__log_label.pack(
