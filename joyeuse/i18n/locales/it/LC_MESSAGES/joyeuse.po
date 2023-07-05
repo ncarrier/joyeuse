@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-04 22:19+0200\n"
+"POT-Creation-Date: 2023-07-05 15:48+0200\n"
 "PO-Revision-Date:  2023-07-04 22:19+0200\n"
 "Last-Translator: Nicolas Carrier <carrier.nicolas0@gmail.com\n"
 "Language-Team: Nicolas Carrier <carrier.nicolas0@gmail.com\n"
@@ -17,10 +17,18 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: joyeuse/ui/main_window.py:109
+msgid "Tutorials"
+msgstr "Tutorial"
+
+#: joyeuse/ui/main_window.py:117
+msgid "Parameters"
+msgstr "impostazioni"
+
 #: joyeuse/__main__.py:22
 msgid "Usage: joyeuse [/path/to/joyeuse]"
 msgstr "Utilizzo: joyeuse [/path/to/joyeuse]"
 
-#: joyeuse/cube/cube.py:45
+#: joyeuse/cube/cube.py:47
 msgid "Detected joyeuse in "
 msgstr "Dispositivo rilevato in "
