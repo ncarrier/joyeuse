@@ -19,6 +19,7 @@ from joyeuse.cube.cube import Cube
 from joyeuse.misc.log import Log
 from joyeuse.ui.settings_tab import SettingsTab
 from joyeuse.ui.tutorials_tab import TutorialsTab
+from joyeuse.__version__ import __title__ as appname
 
 
 class MainWindow(object):
@@ -34,7 +35,7 @@ class MainWindow(object):
         '''
         self.__cube = None
         self.__after_identifier = None
-        self.__root = Tk(className='joyeuse')
+        self.__root = Tk(className=appname)
         self.__setup_window()
 
     def __unload_cube(self):
@@ -54,7 +55,7 @@ class MainWindow(object):
         self.__root.after(1000 * self.__period, self.__joyeuse_detector)
 
     def __setup_window(self):
-        self.__root.title("Joyeuse")
+        self.__root.title(appname.capitalize())
         self.__root.resizable(True, False)
         self.__log_label = tkinter.Label(self.__root, anchor=tkinter.W,
                                          text=MainWindow.WELCOME_MESSAGE)
