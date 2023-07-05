@@ -1,4 +1,13 @@
-Pour version 1.0
+Pour version 1.1
+ * parse Secrets/info.json
+ * internationalisation
+ * bug quand application, stopper le playback de la vidéo
+ * remettre au noir à la fin de la vidéo
+ * bouton pause / lecture ?
+ * vérifier le packaging gstreamer sous windows 😱
+ * vérifier les dépendances pip / debian
+
+Pour version 1.0 ✔
  * résoudre le bug du cr cr lf sous windows -> ok
  * minimiser le diff sur la config -> ok
  * aller à la ligne dans les infobulles -> ok
