@@ -59,21 +59,19 @@ class MainWindow(object):
                 self.__root.update()
                 self.__root.minsize(self.__root.winfo_width(),
                                     self.__root.winfo_height())
-                # TODO could be True, True if at least, the log label wouldn't
-                # stretch vertically
-                self.__root.resizable(True, False)
+                self.__root.resizable(True, True)
 
         self.__root.after(1000 * self.__period, self.__joyeuse_detector)
 
     def __setup_window(self):
         self.__root.title(appname.capitalize())
         self.__root.resizable(False, False)
+
         self.__log_label = tkinter.Label(self.__root, anchor=tkinter.W,
                                          text=MainWindow.WELCOME_MESSAGE)
         self.__log_label.pack(
             side=tkinter.BOTTOM,
             fill=tkinter.X,
-            expand=1,
             padx=(6, 6),
             pady=(6, 6)
         )
@@ -81,6 +79,16 @@ class MainWindow(object):
         ft = (ft["family"], ft["size"] - 2, "italic")
         self.__log_label.config(font=ft)
         Log.set_log_label(self.__log_label)
+
+        separator = ttk.Separator(self.__root, orient='horizontal')
+        separator.pack(fill=tkinter.X, side=tkinter.BOTTOM)
+
+        spacer_label = tkinter.Label(self.__root, font=(0))
+        spacer_label.pack(
+            side=tkinter.BOTTOM,
+            fill=tkinter.BOTH,
+            expand=True
+        )
 
     def __setup_notebook(self):
         self.__notebook = notebook = ttk.Notebook(self.__root)
