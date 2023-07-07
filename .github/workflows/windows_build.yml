@@ -41,7 +41,7 @@ jobs:
         python -m pip install . pyinstaller
     - name: Build joyeuse.exe
       run: |
-        pyinstaller --noconsole --paths . --onefile --name joyeuse --exclude-module _bootlocale --hidden-import=tkinter --collect-submodules=pillow "${PWD}/script/joyeuse.py"
+        pyinstaller --noconsole --paths . --onefile --name joyeuse --exclude-module _bootlocale --hidden-import=tkinter --collect-submodules=pillow --splash "${PWD}/resources/splash.png" "${PWD}/script/joyeuse.py"
     - name: Archive artifact
       uses: actions/upload-artifact@v3
       with:

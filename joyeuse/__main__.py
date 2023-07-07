@@ -17,6 +17,8 @@ from .ui.main_window import MainWindow
 from .cube.cube import Cube
 from .i18n.i18n import I18n
 
+if getattr(sys, "frozen", False):
+    import pyi_splash
 
 def usage(status):
     print(_("Usage: joyeuse [/path/to/joyeuse]"))
@@ -37,6 +39,8 @@ def main():
         Cube.add_extra_location(sys.argv[1])
     window.load_cube(cube)
 
+    if getattr(sys, "frozen", False):
+        pyi_splash.close()
     window.loop()
 
 
