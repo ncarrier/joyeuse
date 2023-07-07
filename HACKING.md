@@ -5,10 +5,10 @@
 For installing the dependencies, it is advised to use a venv, for example:
 
 ```sh
-python -m venv ../venv
+python3 -m venv ../venv
 . ../venv/bin/activate
-pip install --upgrade pip
-pip install --requirement requirements.txt
+pip3 install --upgrade pip
+pip3 install --requirement requirements.txt
 ```
 
 From the cloned repository, one can then execute the program with either:
