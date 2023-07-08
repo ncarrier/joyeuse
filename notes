@@ -1,9 +1,9 @@
 Pour version 1.1
- * parse Secrets/info.json
- * internationalisation
- * bug quand application, stopper le playback de la vidéo
+ * parse Secrets/info.json -> ok
+ * internationalisation -> ok
+ * bouton pause / lecture ?  -> non
+ * bug quand quitte application, stopper le playback de la vidéo
  * remettre au noir à la fin de la vidéo
- * bouton pause / lecture ?
  * vérifier le packaging gstreamer sous windows 😱
  * vérifier les dépendances pip / debian
 
