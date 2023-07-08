@@ -45,6 +45,7 @@ class MainWindow(object):
             ceo()
 
     def __unload_cube(self):
+        self.__tutorials.stop_video()
         self.__notebook.destroy()
         self.__cube = None
 
