@@ -6,6 +6,8 @@ SHELL := /bin/bash
 .SHELLFLAGS := -ec
 python_version := 3.9.9
 
+version := $(shell head -n 1 debian/changelog | sed 's/.*(\(.*\)).*/\1/g')
+
 module_dir := ./joyeuse
 py_files := $(shell find $(module_dir) -name '*.py')
 locales_dir := $(module_dir)/i18n/locales
@@ -13,14 +15,20 @@ pot_file := $(locales_dir)/joyeuse.pot
 po_files := $(wildcard $(locales_dir)/*/LC_MESSAGES/*.po)
 mo_files := $(po_files:.po=.mo)
 
+version_file := $(module_dir)/__version__.py
+
 .PHONY: all
 all: debian pip windows
+
+$(version_file): debian/changelog
+	sed -i "s/\(__version__ = \).*/\1\"$(version)\"/g" $@
 
 $(pot_file):$(py_files)
 	xgettext --from-code utf-8 --output=$(pot_file) $^
 
-%.po:$(pot_file)
-	msgmerge --backup=off --update $@ $^
+%.po:$(pot_file) debian/changelog
+	msgmerge --backup=off --update $@ $<
+	sed -i "s/\(\"Project-Id-Version: \).*/\1$(version)\\\\n\"/g" $@
 
 %.mo:%.po
 	msgfmt -o $@ $^
