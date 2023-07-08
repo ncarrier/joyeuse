@@ -2,8 +2,11 @@
 
 # fr - Outil de configuration de la conteuse Joyeuse
 
-Cet outil permet de modifier les paramètres de la conteuse Joyeuse
-(fichier **Secrets/SETTINGS.txt**).
+Fonctionnalités :
+
+ * lecture des tutoriels vidéo
+ * modifier les paramètres de la conteuse Joyeuse (fichier
+   **Secrets/SETTINGS.txt**).
 
 ## Installation
 
@@ -88,8 +91,9 @@ Pour plus d'information sur Joyeuse, rendez vous sur son
 
 # en - Joyeuse configuration tool
 
-This tool is meant to configure the parameters of the Joyeuse
-(**Secrets/SETTINGS.txt**).
+Features:
+ * playing video tutorials
+ * modification of the parameters of the Joyeuse (**Secrets/SETTINGS.txt**).
 
 ## Installation
 
