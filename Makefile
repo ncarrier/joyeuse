@@ -30,7 +30,7 @@ pip: $(mo_files)
 	python3 setup.py sdist
 
 .PHONY: debian
-debian:
+debian: $(mo_files)
 	debuild -uc -us
 
 windows:
