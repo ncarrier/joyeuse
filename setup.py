@@ -36,14 +36,17 @@ setup(
     author_email=about['__author_email__'],
     url=about['__url__'],
     install_requires=[
+        'pillow',
         'tk',
+        'pygobject',
     ],
     packages=[
         'joyeuse',
         'joyeuse.cube',
         'joyeuse.misc',
         'joyeuse.settings',
-        'joyeuse.ui'
+        'joyeuse.ui',
+        'joyeuse.i18n'
     ],
     python_requires='>=3.6.0',
     license=about['__license__'],
@@ -57,6 +60,9 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 3 :: Only',
     ],
+    package_data={
+        '': ['./i18n/locales/*/LC_MESSAGES/*.mo']
+    },
     entry_points={
         'console_scripts': [
             'joyeuse=joyeuse.__main__:main'

@@ -6,11 +6,17 @@ SHELL := /bin/bash
 .SHELLFLAGS := -ec
 python_version := 3.9.9
 
+po_files := $(wildcard ./joyeuse/i18n/locales/*/LC_MESSAGES/*.po)
+mo_files := $(po_files:.po=.mo)
+
 .PHONY: all
 all: debian pip windows
 
+%.mo:%.po
+	msgfmt -o $@ $^
+
 .PHONY: pip
-pip:
+pip: $(mo_files)
 	python3 setup.py sdist
 
 .PHONY: debian
@@ -77,6 +83,7 @@ clean:
 		../joyeuse_$(version_stripped)_amd64.build \
 		../joyeuse_$(version_stripped)_amd64.buildinfo \
 		../joyeuse_$(version_stripped)_amd64.changes \
+		$(mo_files) \
 		build \
 		joyeuse.spec \
 

@@ -11,14 +11,17 @@
 #
 # You should have received a copy of the GNU General Public License along with
 # Joyeuse. If not, see <https://www.gnu.org/licenses/>.
-from joyeuse.__version__ import __title__ as appname
 import gettext
+import os
+
+from joyeuse.__version__ import __title__ as appname
 
 
 class I18n(object):
     @staticmethod
     def init(languages=None):
-        localedir = "./joyeuse/i18n/locales"
+        module_dir = os.path.dirname(__file__)
+        localedir = f"{module_dir}/locales"
         en_i18n = gettext.translation(appname, localedir, fallback=True,
                                       languages=languages)
         en_i18n.install()
