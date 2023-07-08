@@ -20,7 +20,7 @@ jobs:
     - name: Install package dependencies
       uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: make
+        packages: make gettext
         version: 1.0
 
     - name: Install python dependencies
