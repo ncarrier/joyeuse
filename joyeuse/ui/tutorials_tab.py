@@ -53,7 +53,7 @@ class TutorialsTab(Frame):
 
     def __get_video_handler(self, name):
         def video_handler():
-            self.__stop_video()
+            self.stop_video()
             self.__gst.set_property("uri", f"file:///{name}")
             self.__gst.set_state(Gst.State.PLAYING)
 
@@ -68,7 +68,7 @@ class TutorialsTab(Frame):
 
         return video_handler
 
-    def __stop_video(self):
+    def stop_video(self):
         self.__gst.set_state(Gst.State.NULL)
         self.__gst.set_state(Gst.State.READY)
 
@@ -85,7 +85,7 @@ class TutorialsTab(Frame):
                 pady=(3, 3)
             )
             idx += 1
-        b = Button(self, text=f"▣ {_('Stop')}", command=self.__stop_video)
+        b = Button(self, text=f"▣ {_('Stop')}", command=self.stop_video)
         b.grid(
             column=0,
             row=idx,

@@ -34,12 +34,22 @@ class MainWindow(object):
         self.__cube = None
         self.__after_identifier = None
         self.__root = Tk(className=appname)
+        self.__close_event_observers = []
+        self.__root.protocol('WM_DELETE_WINDOW', self.__close_event_handler)
+        self.__register_close_event_observer(self.__root.destroy)
         self.__welcome_message = _("Plug in your Joyeuse :)")
         self.__setup_window()
+
+    def __close_event_handler(self):
+        for ceo in reversed(self.__close_event_observers):
+            ceo()
 
     def __unload_cube(self):
         self.__notebook.destroy()
         self.__cube = None
+
+    def __register_close_event_observer(self, close_event_observer):
+        self.__close_event_observers.append(close_event_observer)
 
     def __joyeuse_detector(self):
         if self.__cube:
@@ -106,6 +116,7 @@ class MainWindow(object):
         self.__tutorials = tutorials = TutorialsTab(notebook)
         tutorials.pack(fill=tkinter.BOTH, expand=True)
         tutorials.columnconfigure(0, weight=1)
+        self.__register_close_event_observer(tutorials.stop_video)
         notebook.add(tutorials, text=_("Tutorials"))
 
         self.__settings = settings = SettingsTab(
