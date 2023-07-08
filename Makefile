@@ -6,11 +6,21 @@ SHELL := /bin/bash
 .SHELLFLAGS := -ec
 python_version := 3.9.9
 
-po_files := $(wildcard ./joyeuse/i18n/locales/*/LC_MESSAGES/*.po)
+module_dir := ./joyeuse
+py_files := $(shell find $(module_dir) -name '*.py')
+locales_dir := $(module_dir)/i18n/locales
+pot_file := $(locales_dir)/joyeuse.pot
+po_files := $(wildcard $(locales_dir)/*/LC_MESSAGES/*.po)
 mo_files := $(po_files:.po=.mo)
 
 .PHONY: all
 all: debian pip windows
+
+$(pot_file):$(py_files)
+	xgettext --from-code utf-8 --output=$(pot_file) $^
+
+%.po:$(pot_file)
+	msgmerge --backup=off --update $@ $^
 
 %.mo:%.po
 	msgfmt -o $@ $^
