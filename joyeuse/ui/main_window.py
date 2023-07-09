@@ -20,6 +20,9 @@ from joyeuse.ui.settings_tab import SettingsTab
 from joyeuse.ui.tutorials_tab import TutorialsTab
 from joyeuse.__version__ import __title__ as appname
 
+import gi  # noqa F401
+from gi.repository import GObject
+
 
 class MainWindow(object):
     '''
@@ -33,6 +36,8 @@ class MainWindow(object):
         '''
         self.__cube = None
         self.__after_identifier = None
+        GObject.idle_add(self.__refresh)
+        self.__loop = GObject.MainLoop()
         self.__root = Tk(className=appname)
         self.__close_event_observers = []
         self.__root.protocol('WM_DELETE_WINDOW', self.__close_event_handler)
@@ -150,5 +155,9 @@ class MainWindow(object):
             self.__root.iconphoto(True, cube.icon)
         self.__joyeuse_detector()
 
+    def __refresh(self):
+        self.__root.update()
+        return True
+
     def loop(self):
-        self.__root.mainloop()
+        self.__loop.run()
