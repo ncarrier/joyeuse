@@ -72,7 +72,10 @@ class Cube(object):
 
     @property
     def tutorials(self):
-        return glob.glob(f"{self.__path}/Secrets/Tutos vidéo/*.mp4")
+        result = glob.glob(f"{self.__path}/Secrets/Tutos vidéo/*.mp4")
+        result.sort()
+
+        return result
 
     @property
     def icon(self):
