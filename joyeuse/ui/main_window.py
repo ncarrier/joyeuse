@@ -42,6 +42,7 @@ class MainWindow(object):
         self.__close_event_observers = []
         self.__root.protocol('WM_DELETE_WINDOW', self.__close_event_handler)
         self.__register_close_event_observer(self.__root.destroy)
+        self.__register_close_event_observer(self.__loop.quit)
         self.__welcome_message = _("Plug in your Joyeuse :)")
         self.__setup_window()
 
