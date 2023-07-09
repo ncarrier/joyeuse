@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-08 06:56+0200\n"
+"POT-Creation-Date: 2023-07-08 23:06+0200\n"
 "PO-Revision-Date:  2023-07-04 22:19+0200\n"
 "Last-Translator: Nicolas Carrier <carrier.nicolas0@gmail.com\n"
 "Language-Team: Nicolas Carrier <carrier.nicolas0@gmail.com\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: joyeuse/ui/main_window.py:37
+#: joyeuse/ui/main_window.py:40
 msgid "Plug in your Joyeuse :)"
 msgstr "Collega la tua Joyeuse :)"
 
-#: joyeuse/ui/main_window.py:109
+#: joyeuse/ui/main_window.py:121
 msgid "Tutorials"
 msgstr "Tutorial"
 
-#: joyeuse/ui/main_window.py:117
+#: joyeuse/ui/main_window.py:129
 msgid "Parameters"
 msgstr "impostazioni"
 

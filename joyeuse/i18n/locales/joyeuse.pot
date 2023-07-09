@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-07-08 07:25+0200\n"
+"POT-Creation-Date: 2023-07-08 23:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: joyeuse/ui/main_window.py:37
+#: joyeuse/ui/main_window.py:40
 msgid "Plug in your Joyeuse :)"
 msgstr ""
 
-#: joyeuse/ui/main_window.py:109
+#: joyeuse/ui/main_window.py:121
 msgid "Tutorials"
 msgstr ""
 
-#: joyeuse/ui/main_window.py:117
+#: joyeuse/ui/main_window.py:129
 msgid "Parameters"
 msgstr ""
 
