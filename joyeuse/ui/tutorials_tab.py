@@ -32,13 +32,6 @@ class TutorialsTab(Frame):
 
         self.__player = Frame(self, bg='black')
         self.__wid = self.__player.winfo_id()
-        self.__player.grid(
-            column=0,
-            row=0,
-            sticky=NSEW,
-            padx=(3, 3),
-            pady=(3, 3)
-        )
 
         bus = self.__gst.get_bus()
         bus.add_signal_watch()
@@ -48,7 +41,7 @@ class TutorialsTab(Frame):
 
     def __on_eos(self, bus, message):
         if message.type == Gst.MessageType.EOS:
-            print("here")  # TODO here paint the player in black
+            self.stop_video()
 
     def __set_frame_handle(self, bus, message):
         structure = message.get_structure()
@@ -61,12 +54,20 @@ class TutorialsTab(Frame):
             self.stop_video()
             self.__gst.set_property("uri", f"file:///{name}")
             self.__gst.set_state(Gst.State.PLAYING)
+            self.__player.grid(
+                column=0,
+                row=0,
+                sticky=NSEW,
+                padx=(3, 3),
+                pady=(3, 3)
+            )
 
         return video_handler
 
     def stop_video(self):
         self.__gst.set_state(Gst.State.NULL)
         self.__gst.set_state(Gst.State.READY)
+        self.__player.grid_forget()
 
     def load_cube_tutorials(self, tutorials):
         idx = 1
