@@ -35,14 +35,17 @@ class MainWindow(object):
         Constructor
         '''
         self.__cube = None
-        self.__after_identifier = None
+        self.__save_identifier = None
+        self.__detector_identifier = None
         GObject.idle_add(self.__refresh)
         self.__loop = GObject.MainLoop()
         self.__root = Tk(className=appname)
         self.__close_event_observers = []
         self.__root.protocol('WM_DELETE_WINDOW', self.__close_event_handler)
-        self.__register_close_event_observer(self.__root.destroy)
-        self.__register_close_event_observer(self.__loop.quit)
+        rceo = self.__register_close_event_observer
+        rceo(self.__root.destroy)
+        rceo(self.__loop.quit)
+        rceo(lambda: self.__root.after_cancel(self.__detector_identifier))
         self.__welcome_message = _("Plug in your Joyeuse :)")
         self.__setup_window()
 
@@ -78,7 +81,8 @@ class MainWindow(object):
                                     self.__root.winfo_height())
                 self.__root.resizable(True, True)
 
-        self.__root.after(1000 * self.__period, self.__joyeuse_detector)
+        self.__detector_identifier = self.__root.after(1000 * self.__period,
+                                                       self.__joyeuse_detector)
 
     def __setup_window(self):
         self.__root.title(appname.capitalize())
@@ -138,14 +142,14 @@ class MainWindow(object):
 
     def __do_save(self):
         self.__cube.settings.save()
-        self.__after_identifier = None
+        self.__save_identifier = None
 
     def __save_scheduler(self):
-        if self.__after_identifier is not None:
-            self.__root.after_cancel(self.__after_identifier)
+        if self.__save_identifier is not None:
+            self.__root.after_cancel(self.__save_identifier)
 
-        self.__after_identifier = self.__root.after(1000 * self.__period,
-                                                    self.__do_save)
+        self.__save_identifier = self.__root.after(1000 * self.__period,
+                                                   self.__do_save)
 
     def load_cube(self, cube):
         if cube is not None:
