@@ -27,7 +27,6 @@ class TutorialsTab(Frame):
         Frame.__init__(self, parent)
         self.grid_rowconfigure(0, weight=1)
         Gst.init(None)
-        GObject.threads_init()
         self.__player = None
         self.__gst = Gst.ElementFactory.make('playbin', None)
         self.__player = Frame(self, bg='black')
