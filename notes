@@ -1,8 +1,25 @@
+Pour version 1.2
+ * bouton d'ejection ?
+ * forçage de synchronisation ?
+   -> pas de os.sync sous windows, f.flush() + os.fsync(f.fileno()) ?
+ * emplacement de stockage d'information par user ?
+ * backup du contenu de la liseuse
+ * prototype de la UI de bibliothèque
+   -> tree view ?
+   -> boutons play pause
+   -> seek bar
+   -> méta-données -> éditables ?
+ * onglet de face
+   -> deux colonnes, bibliothèque, face cible
+   -> bouton de suppression de media
+   -> ui de lecture?
+
+
 Pour version 1.1
  * parse Secrets/info.json -> ok
  * internationalisation -> ok
  * bouton pause / lecture ?  -> non
- * bug quand quitte application, stopper le playback de la vidéo
+ * bug quand quitte application, stopper le playback de la vidéo -> ok
  * remettre au noir à la fin de la vidéo
  * vérifier le packaging gstreamer sous windows 😱
  * vérifier les dépendances pip / debian
