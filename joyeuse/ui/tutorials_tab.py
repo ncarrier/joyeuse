@@ -44,11 +44,10 @@ class TutorialsTab(Frame):
 
     @staticmethod
     def set_frame_handle(bus, message, frame_id):
-        if not message.get_structure() is None:
-            if message.get_structure().get_name() == 'prepare-window-handle':
-                display_frame = message.src
-                display_frame.set_property('force-aspect-ratio', True)
-                display_frame.set_window_handle(frame_id)
+        structure = message.get_structure()
+        if structure is not None:
+            if structure.get_name() == 'prepare-window-handle':
+                message.src.set_window_handle(frame_id)
 
     def __get_video_handler(self, name):
         def video_handler():
