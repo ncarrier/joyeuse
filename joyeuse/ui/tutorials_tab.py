@@ -29,8 +29,11 @@ class TutorialsTab(Frame):
         Gst.init(None)
         self.__player = None
         self.__gst = Gst.ElementFactory.make("playbin", "player")
-
-        self.__player = Frame(self, bg='black')
+        self.__player_container = Frame(self, bg='black')
+        self.__player_container.grid_rowconfigure(0, weight=1)
+        self.__player_container.grid_columnconfigure(0, weight=1)
+        self.__player = Frame(self.__player_container, bg='black')
+        self.__player_container.grid(column=0, row=0, sticky=NSEW)
         self.__wid = self.__player.winfo_id()
 
         bus = self.__gst.get_bus()
@@ -58,8 +61,8 @@ class TutorialsTab(Frame):
                 column=0,
                 row=0,
                 sticky=NSEW,
-                padx=(3, 3),
-                pady=(3, 3)
+                padx=(1, 1),
+                pady=(1, 1)
             )
 
         return video_handler
