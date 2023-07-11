@@ -6,7 +6,7 @@ import tkinter
 
 import gi
 gi.require_version('Gst', '1.0')
-from gi.repository import Gst, GObject  # noqa E402
+from gi.repository import Gst, GObject, GLib  # noqa E402
 
 gi.require_version('GstVideo', '1.0')
 from gi.repository import GstVideo  # noqa E402,F401
@@ -26,25 +26,34 @@ def set_frame_handle(bus, message, frame_id):
             display_frame.set_window_handle(frame_id)
 
 
-def quit_window(player, window):
+def quit_window(loop, player, window):
     stop_video(player)
+    loop.quit()
     window.destroy()
 
 
-def on_message(bus, message):
-    # TODO doesn't work
-    print("on message")
-    t = message.type
-    if t == Gst.MessageType.EOS:
-        print("eos")
+def get_on_message(loop, player, window):
+    def on_message(bus, message):
+        if message.type == Gst.MessageType.EOS:
+            print("eos")
+            quit_window(loop, player, window)
+
+    return on_message
+
+
+def refresh(root):
+    root.update()
+    return True
 
 
 Gst.init(None)
+loop = GLib.MainLoop()
 
 window = tkinter.Tk()
+GLib.idle_add(lambda: refresh(window))
 player = Gst.ElementFactory.make('playbin', None)
 fullname = os.path.abspath(sys.argv[1])
-window.protocol('WM_DELETE_WINDOW', lambda: quit_window(player, window))
+window.protocol('WM_DELETE_WINDOW', lambda: quit_window(loop, player, window))
 
 window.title("Example tk-gstreamer video player")
 window.geometry('640x360')
@@ -57,8 +66,9 @@ player.set_property('uri', 'file://%s' % fullname)
 player.set_state(Gst.State.PLAYING)
 
 bus = player.get_bus()
+bus.add_signal_watch()
 bus.enable_sync_message_emission()
 bus.connect('sync-message::element', set_frame_handle, frame_id)
-bus.connect('message', on_message)
+bus.connect('message', get_on_message(loop, player, window))
 
-window.mainloop()
+loop.run()
