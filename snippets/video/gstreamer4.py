@@ -3,6 +3,8 @@
 import sys, os
 import gi
 gi.require_version('Gst', '1.0')
+gi.require_version('GstVideo', '1.0')
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gst, GObject, Gtk
 
 # Needed for window.get_xid(), xvimagesink.set_window_handle(), respectively:
@@ -11,7 +13,7 @@ from gi.repository import GdkX11, GstVideo
 class GTK_Main(object):
 
     def __init__(self):
-        window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
+        window = Gtk.Window(type=Gtk.WindowType.TOPLEVEL)
         window.set_title("Video-Player")
         window.set_default_size(500, 400)
         window.connect("destroy", Gtk.main_quit, "WM destroy")
@@ -21,7 +23,7 @@ class GTK_Main(object):
         vbox.pack_start(hbox, False, False, 0)
         self.entry = Gtk.Entry()
         hbox.add(self.entry)
-        self.button = Gtk.Button("Start")
+        self.button = Gtk.Button(label="Start")
         hbox.pack_start(self.button, False, False, 0)
         self.button.connect("clicked", self.start_stop)
         self.movie_window = Gtk.DrawingArea()
@@ -65,7 +67,6 @@ class GTK_Main(object):
             imagesink.set_window_handle(self.movie_window.get_property('window').get_xid())
 
 
-GObject.threads_init()
-Gst.init(None)        
+Gst.init(None)
 GTK_Main()
 Gtk.main()
