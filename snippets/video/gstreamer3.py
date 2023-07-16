@@ -3,13 +3,14 @@
 import os
 import gi
 gi.require_version('Gst', '1.0')
+gi.require_version('Gtk', '3.0')
 from gi.repository import Gst, GObject, Gtk  # noqa E402
 
 
 class GTK_Main(object):
 
     def __init__(self):
-        window = Gtk.Window(Gtk.WindowType.TOPLEVEL)
+        window = Gtk.Window(type=Gtk.WindowType.TOPLEVEL)
         window.set_title("Audio-Player")
         window.set_default_size(300, -1)
         window.connect("destroy", Gtk.main_quit, "WM destroy")
@@ -17,14 +18,18 @@ class GTK_Main(object):
         window.add(vbox)
         self.entry = Gtk.Entry()
         vbox.pack_start(self.entry, False, True, 0)
-        self.button = Gtk.Button("Start")
+        self.button = Gtk.Button(label="Start")
         self.button.connect("clicked", self.start_stop)
         vbox.add(self.button)
+
+        sink = Gst.ElementFactory.make("gtksink", None)
+        vbox.add(sink.props.widget)
+
         window.show_all()
 
         self.player = Gst.ElementFactory.make("playbin", "player")
-        fakesink = Gst.ElementFactory.make("fakesink", "fakesink")
-        self.player.set_property("video-sink", fakesink)
+        self.player.set_property("video-sink", sink)
+
         bus = self.player.get_bus()
         bus.add_signal_watch()
         bus.connect("message", self.on_message)
@@ -55,5 +60,4 @@ class GTK_Main(object):
 
 Gst.init(None)
 GTK_Main()
-GObject.threads_init()
 Gtk.main()
